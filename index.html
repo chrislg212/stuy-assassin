@@ -58,7 +58,9 @@ ul.players .nm{overflow-wrap:anywhere;min-width:0}
 .err{color:var(--accent);font-size:14px;font-weight:500}
 .dossier{background:var(--surface);border:2px solid var(--ink);border-radius:4px;padding:22px 20px;display:flex;flex-direction:column;gap:16px;position:relative}
 .stamp{align-self:flex-start;font-family:var(--display);text-transform:uppercase;color:var(--accent);border:3px solid var(--accent);padding:4px 10px;transform:rotate(-4deg);letter-spacing:.06em;font-size:15px}
-.reveal{font:inherit;border:1px dashed var(--muted);border-radius:4px;background:var(--bg);padding:26px 14px;min-height:96px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:100%;color:var(--ink)}
+.reveal{font:inherit;border:1px dashed var(--muted);border-radius:4px;background:var(--bg);padding:26px 14px;min-height:96px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:100%;color:var(--ink);
+  -webkit-touch-callout:none;-webkit-user-select:none;user-select:none;touch-action:none}
+.reveal[aria-pressed="true"]{border-style:solid;border-color:var(--accent)}
 .reveal .tname{font-family:var(--display);font-size:clamp(30px,9vw,40px);line-height:1.05;text-transform:uppercase;overflow-wrap:anywhere}
 .reveal .hint{font-size:13px;color:var(--muted);font-weight:500}
 .redacted{display:inline-block;background:var(--ink);color:transparent;border-radius:2px;user-select:none}
@@ -66,6 +68,12 @@ ul.players .nm{overflow-wrap:anywhere;min-width:0}
 .meta dt{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);padding-top:2px}
 .meta dd{margin:0;overflow-wrap:anywhere}
 .linkbtn{background:none;border:none;padding:4px 0;font-weight:500;color:var(--muted);text-decoration:underline;font-size:14px;align-self:flex-start}
+.invite{display:flex;flex-direction:column;gap:8px}
+.invite input{font-family:var(--mono);font-size:14px}
+.leave-zone{margin-top:40px;padding-top:8px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
+.leave-zone .linkbtn{padding:12px 0}
+.confirm{display:flex;flex-direction:column;gap:12px;padding-top:8px}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 footer{font-size:13px;color:var(--muted);text-align:center}
 @media (prefers-reduced-motion:no-preference){.stamp{animation:thunk .35s ease-out}}
 @keyframes thunk{from{transform:rotate(-4deg) scale(1.6);opacity:0}to{transform:rotate(-4deg) scale(1);opacity:1}}
@@ -84,21 +92,21 @@ footer{font-size:13px;color:var(--muted);text-align:center}
   <p id="offline" class="note" hidden>Lost the connection to the game server. Check your signal; it reconnects on its own.</p>
 
   <!-- Home -->
-  <section id="s-home" class="card">
+  <form id="s-home" class="card" novalidate>
     <div class="field">
       <label for="name">Your name</label>
-      <input id="name" maxlength="20" autocomplete="nickname" placeholder="e.g. Indra">
+      <input id="name" maxlength="20" autocomplete="nickname" enterkeyhint="next" placeholder="e.g. Indra">
     </div>
     <div class="field">
       <label for="code">Room code</label>
-      <input id="code" class="code" maxlength="4" autocomplete="off" autocapitalize="characters" placeholder="ABCD">
+      <input id="code" class="code" maxlength="4" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" enterkeyhint="go" placeholder="ABCD">
     </div>
-    <button id="btn-join" class="primary">Join room</button>
+    <button id="btn-join" type="submit" class="primary">Join room</button>
     <div class="divider">or</div>
-    <button id="btn-create">Create a new room</button>
+    <button id="btn-create" type="button">Create a new room</button>
     <p id="home-err" class="err" hidden></p>
     <p class="muted" style="font-size:14px">Whoever creates the room presses Start once everyone is in. Each phone then gets one name, and nobody sees anyone else's.</p>
-  </section>
+  </form>
 
   <!-- Lobby -->
   <section id="s-lobby" class="card" hidden>
@@ -107,6 +115,10 @@ footer{font-size:13px;color:var(--muted);text-align:center}
       <span id="lobby-count" class="count">0 / 20</span>
     </div>
     <p class="muted" id="lobby-help">Share this code with the group. Players appear here as they join.</p>
+    <div class="invite">
+      <button id="btn-copy" type="button">Copy invite link</button>
+      <input id="invite-url" readonly hidden aria-label="Invite link">
+    </div>
     <ul id="players" class="players"></ul>
     <div id="host-controls" hidden>
       <div style="display:flex;flex-direction:column;gap:10px">
@@ -126,10 +138,11 @@ footer{font-size:13px;color:var(--muted);text-align:center}
       <div>
         <span class="eyebrow">Your target</span>
       </div>
-      <button id="reveal" class="reveal" aria-live="polite">
-        <span class="tname" id="tname"><span class="redacted">XXXXXXXX</span></span>
-        <span class="hint" id="thint">Tap to reveal. Check nobody's looking.</span>
+      <button id="reveal" class="reveal" type="button" aria-pressed="false">
+        <span class="tname" id="tname"><span class="redacted" aria-hidden="true">XXXXXXXX</span></span>
+        <span class="hint" id="thint">Press and hold to reveal. Check nobody's looking.</span>
       </button>
+      <span id="reveal-live" class="sr-only" aria-live="polite"></span>
       <dl class="meta">
         <dt>Agent</dt><dd id="t-me"></dd>
         <dt>Room</dt><dd id="t-room"></dd>
@@ -142,7 +155,16 @@ footer{font-size:13px;color:var(--muted);text-align:center}
       <p class="note">Everyone's target is sealed so only their phone can open it. Players have 12 hours to open the page and get theirs.</p>
       <ul id="host-players" class="players"></ul>
     </div>
-    <button id="btn-leave2" class="linkbtn" style="margin-top:12px">Leave this game</button>
+    <div class="leave-zone">
+      <button id="btn-leave2" type="button" class="linkbtn">Leave this game</button>
+      <div id="leave-confirm" class="confirm" role="group" aria-labelledby="leave-q" hidden>
+        <p id="leave-q">Leave this game? You can rejoin with code <strong id="leave-code"></strong> on this phone to see your target again.</p>
+        <div class="row">
+          <button id="leave-yes" type="button" class="primary">Leave</button>
+          <button id="leave-no" type="button">Cancel</button>
+        </div>
+      </div>
+    </div>
   </section>
 
   <footer>Targets form one secret loop, so every player hunts exactly one person and is hunted by exactly one.</footer>
@@ -154,7 +176,11 @@ const PREFIX = 'stuytown-assassin-v1-';
 const $ = id => document.getElementById(id);
 
 // Test mode (#test): each browser tab acts as a separate player.
-const TEST = location.hash === '#test';
+// Invite links carry the room code: #ABCD, or #test/ABCD in test mode. Lowercase "test" is reserved for test mode.
+const hashParts = location.hash.slice(1).split('/');
+const TEST = hashParts[0] === 'test';
+const hashCode = (hashParts[TEST ? 1 : 0] || '').toLowerCase();
+const LINK_CODE = /^[a-z]{4}$/.test(hashCode) ? hashCode : null;
 const store = () => TEST ? sessionStorage : localStorage;
 const LS = {
   get(k){ try{ const v = store().getItem(k); return v ? JSON.parse(v) : null; }catch(e){ return null; } },
@@ -181,6 +207,8 @@ function err(id, msg){ const el = $(id); el.textContent = msg || ''; el.hidden =
 async function publish(code, obj){
   const r = await fetch(RELAY + PREFIX + code, {method:'POST', body: JSON.stringify(obj)});
   if (!r.ok) throw new Error('relay ' + r.status);
+  // ntfy echoes the stored message. Ingest it here so our own messages never depend on the live feed catching them.
+  try { const m = await r.json(); if (session && session.code === code && ingest(m)) update(); } catch(e){}
 }
 async function pollAll(code){
   const r = await fetch(RELAY + PREFIX + code + '/json?poll=1&since=all');
@@ -195,7 +223,17 @@ async function pollAll(code){
 function ingest(m){
   if (seen.has(m.id)) return false;
   seen.add(m.id);
-  try { const d = JSON.parse(m.message); if (d && typeof d.t === 'string'){ msgs.push(d); return true; } } catch(e){}
+  try {
+    const d = JSON.parse(m.message);
+    if (d && typeof d.t === 'string'){
+      // Messages can arrive out of order (echo, live feed, re-poll), so keep the log in relay-time order.
+      d.at = m.time || 0;
+      let i = msgs.length;
+      while (i > 0 && msgs[i-1].at > d.at) i--;
+      msgs.splice(i, 0, d);
+      return true;
+    }
+  } catch(e){}
   return false;
 }
 function subscribe(code, sinceId){
@@ -203,7 +241,11 @@ function subscribe(code, sinceId){
   es = new EventSource(RELAY + PREFIX + code + '/sse' + (sinceId ? '?since=' + encodeURIComponent(sinceId) : '?since=all'));
   es.onmessage = ev => { try { const m = JSON.parse(ev.data); if (m.event === 'message' && ingest(m)) update(); } catch(e){} };
   es.onerror = () => { $('offline').hidden = false; };
-  es.onopen = () => { $('offline').hidden = true; };
+  es.onopen = () => {
+    $('offline').hidden = true;
+    // Catch anything published while the feed was connecting (or offline) that its replay missed.
+    pollAll(code).then(ms => { if (session && session.code === code && ms.map(ingest).some(Boolean)) update(); }).catch(() => {});
+  };
 }
 
 // ---- state from the message log ----
@@ -290,6 +332,7 @@ async function update(){
 
 function renderLobby(st, isHost){
   $('lobby-code').textContent = session.code.toUpperCase();
+  $('btn-copy').hidden = !st.hostPid;
   $('lobby-count').textContent = st.list.length + ' / 20';
   renderList($('players'), st.list, null);
   $('host-controls').hidden = !isHost;
@@ -307,22 +350,48 @@ function renderLobby(st, isHost){
   }
 }
 
+let targetName = '', revealed = false, revealTimer = null;
 function showTarget(name, isHost){
   show('target');
   $('t-me').textContent = session.name;
   $('t-room').textContent = session.code.toUpperCase();
-  const r = $('reveal'); r.dataset.name = name;
-  if (r.dataset.open === '1') $('tname').textContent = name;
+  $('leave-code').textContent = session.code.toUpperCase();
+  targetName = name;
   $('host-status').hidden = !isHost;
 }
-function hideName(){ $('tname').innerHTML = '<span class="redacted">XXXXXXXX</span>'; $('thint').textContent = "Tap to reveal. Check nobody's looking."; }
-$('reveal').addEventListener('click', () => {
-  const r = $('reveal'); const open = r.dataset.open !== '1'; r.dataset.open = open ? '1' : '0';
-  if (open){ $('tname').textContent = r.dataset.name || ''; $('thint').textContent = 'Tap to hide.'; } else hideName();
-});
+function hideName(){
+  $('tname').innerHTML = '<span class="redacted" aria-hidden="true">XXXXXXXX</span>';
+  $('thint').textContent = "Press and hold to reveal. Check nobody's looking.";
+  $('reveal-live').textContent = '';
+}
+// The name shows only while held, and never for more than 5 seconds at a time.
+function setReveal(on){
+  clearTimeout(revealTimer);
+  revealed = on;
+  $('reveal').setAttribute('aria-pressed', on ? 'true' : 'false');
+  if (on){
+    $('tname').textContent = targetName;
+    $('thint').textContent = 'Release to hide.';
+    $('reveal-live').textContent = 'Your target: ' + targetName;
+    revealTimer = setTimeout(() => setReveal(false), 5000);
+  } else hideName();
+}
+const revealBtn = $('reveal');
+revealBtn.addEventListener('pointerdown', e => { if (e.button === 0) setReveal(true); });
+for (const ev of ['pointerup','pointercancel','pointerleave']) revealBtn.addEventListener(ev, () => { if (revealed) setReveal(false); });
+let lastKey = 0;
+revealBtn.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); lastKey = Date.now(); if (!e.repeat) setReveal(true); } });
+revealBtn.addEventListener('keyup', e => { if (e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); lastKey = Date.now(); setReveal(false); } });
+// Screen readers activate with a bare click (no pointer or key press); show for the 5 seconds.
+revealBtn.addEventListener('click', e => { if (e.detail === 0 && Date.now() - lastKey > 300) setReveal(true); });
+revealBtn.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('visibilitychange', () => { if (document.hidden && revealed) setReveal(false); });
+addEventListener('pagehide', () => { if (revealed) setReveal(false); });
+addEventListener('blur', () => { if (revealed) setReveal(false); });
 
 async function enterRoom(code, name, opts = {}){
   busy = true;
+  let ok = false;
   try {
     msgs = []; seen = new Set();
     const existing = await pollAll(code);
@@ -332,15 +401,18 @@ async function enterRoom(code, name, opts = {}){
     myKey = await getKeys(code);
     session = {code, name};
     LS.set('sa.session', session);
+    // Subscribe before publishing so nothing sent from here on can fall between the poll and the live feed.
+    subscribe(code, existing.length ? existing[existing.length-1].id : null);
     if (opts.create) await publish(code, {t:'create', pid});
     const st = state();
     if (!st.list.some(p => p.pid === pid) && !st.start) await publish(code, {t:'join', pid, name, pub: myKey.pub});
-    subscribe(code, existing.length ? existing[existing.length-1].id : null);
-    update();
+    ok = true;
   } catch(e){
     err(session ? 'lobby-err' : 'home-err', "Couldn't reach the game server. Check your connection and try again.");
   }
   busy = false;
+  // Render after busy clears, so Start isn't left disabled from a render that happened mid-join.
+  if (ok) update();
 }
 
 $('btn-create').addEventListener('click', async () => {
@@ -355,11 +427,14 @@ $('btn-create').addEventListener('click', async () => {
   }
   $('btn-create').disabled = false;
 });
-$('btn-join').addEventListener('click', async () => {
+$('s-home').addEventListener('submit', async e => {
+  e.preventDefault();
+  if ($('btn-join').disabled || $('btn-create').disabled) return;
   const name = $('name').value.trim();
   const code = $('code').value.trim().toLowerCase();
-  if (!name){ err('home-err', 'Enter your name first.'); return; }
-  if (!/^[a-z]{4}$/.test(code)){ err('home-err', 'Room codes are 4 letters.'); return; }
+  if (!name){ err('home-err', 'Enter your name first.'); $('name').focus(); return; }
+  if (!code){ err('home-err', 'Enter the room code, or create a new room.'); $('code').focus(); return; }
+  if (!/^[a-z]{4}$/.test(code)){ err('home-err', 'Room codes are 4 letters.'); $('code').focus(); return; }
   err('home-err', '');
   $('btn-join').disabled = true;
   await enterRoom(code, name);
@@ -400,21 +475,48 @@ $('btn-start').addEventListener('click', async () => {
 async function leave(){
   if (session){
     const st = state();
-    if (!st.start) publish(session.code, {t:'leave', pid}).catch(()=>{});
-    LS.del('sa.target.'+session.code); LS.del('sa.key.'+session.code);
+    if (!st.start){
+      publish(session.code, {t:'leave', pid}).catch(()=>{});
+      LS.del('sa.target.'+session.code); LS.del('sa.key.'+session.code);
+    }
+    // Once the game has started, keep this phone's key and target so rejoining the same code brings the target back.
   }
   LS.del('sa.session');
   if (es){ es.close(); es = null; }
-  session = null; msgs = []; $('reveal').dataset.open = '0'; hideName();
+  session = null; msgs = []; targetName = ''; setReveal(false); closeLeaveConfirm(false);
   err('lobby-err',''); show('home');
 }
+function openLeaveConfirm(){ $('btn-leave2').hidden = true; $('leave-confirm').hidden = false; $('leave-no').focus(); }
+function closeLeaveConfirm(refocus){ $('leave-confirm').hidden = true; $('btn-leave2').hidden = false; if (refocus) $('btn-leave2').focus(); }
 $('btn-leave').addEventListener('click', leave);
-$('btn-leave2').addEventListener('click', leave);
+$('btn-leave2').addEventListener('click', openLeaveConfirm);
+$('leave-no').addEventListener('click', () => closeLeaveConfirm(true));
+$('leave-yes').addEventListener('click', leave);
+$('leave-confirm').addEventListener('keydown', e => { if (e.key === 'Escape') closeLeaveConfirm(true); });
 $('code').addEventListener('input', e => { e.target.value = e.target.value.replace(/[^a-z]/gi,'').toUpperCase(); });
+// Enter in the name field moves on to the code when it's still empty.
+$('name').addEventListener('keydown', e => { if (e.key === 'Enter' && !$('code').value){ e.preventDefault(); $('code').focus(); } });
+
+$('btn-copy').addEventListener('click', async () => {
+  if (!session) return;
+  const url = location.href.split('#')[0] + '#' + (TEST ? 'test/' : '') + session.code.toUpperCase();
+  const btn = $('btn-copy'), field = $('invite-url');
+  try {
+    await navigator.clipboard.writeText(url);
+    btn.textContent = 'Copied';
+    setTimeout(() => { btn.textContent = 'Copy invite link'; }, 2000);
+  } catch(e){
+    field.value = url; field.hidden = false; field.focus(); field.select();
+    btn.textContent = 'Select the link above and copy it';
+  }
+});
 
 const last = LS.get('sa.session');
 if (last && last.name) $('name').value = last.name;
-if (last && last.code) enterRoom(last.code, last.name, {resume: true});
+if (LINK_CODE) $('code').value = LINK_CODE.toUpperCase();
+// A link to a different room wins over resuming the last one; the old game stays saved on this phone.
+if (last && last.code && (!LINK_CODE || LINK_CODE === last.code)) enterRoom(last.code, last.name, {resume: true});
+else if (LINK_CODE) $(last && last.name ? 'btn-join' : 'name').focus();
 })();
 
 </script>
