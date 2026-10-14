@@ -7,7 +7,9 @@
 <meta name="description" content="Join the lobby, get your secret target.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<!-- Fonts load without blocking first paint; the fallback stacks render until they arrive. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap"></noscript>
 <style>
 /* Layout: one narrow column, a single "case file" card per screen, built for a phone in one hand */
 :root{
@@ -66,7 +68,6 @@ ul.players .nm{overflow-wrap:anywhere;min-width:0}
 .tags{display:flex;gap:var(--space-tight);flex-wrap:nowrap}
 .tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:2px var(--space-tight);border-radius:3px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
 .tag.host{border-color:var(--accent);color:var(--accent)}
-.tag.ok{border-color:var(--ok);color:var(--ok)}
 .note{font-size:14px;padding:var(--space-tight) var(--space-inline);border-radius:4px;background:var(--soft);color:var(--ink)}
 .err{color:var(--accent);font-size:14px;font-weight:500}
 /* Lobby: code and invite, then the host's action, then the roster; the roster grows, so it goes last. */
@@ -125,7 +126,7 @@ ul.players .nm{overflow-wrap:anywhere;min-width:0}
 
   <!-- Home -->
   <form id="s-home" class="card" novalidate aria-labelledby="home-h">
-    <span class="stamp">Recruiting</span>
+    <span class="stamp" aria-hidden="true">Recruiting</span>
     <h2 id="home-h" class="sr-only" tabindex="-1">Join or create a room</h2>
     <div class="field">
       <label for="name">Your name</label>
@@ -144,7 +145,7 @@ ul.players .nm{overflow-wrap:anywhere;min-width:0}
 
   <!-- Lobby -->
   <section id="s-lobby" class="card lobby" aria-labelledby="lobby-h" hidden>
-    <span class="stamp">Standby</span>
+    <span class="stamp" aria-hidden="true">Standby</span>
     <div class="stack">
       <h2 id="lobby-h" class="label" tabindex="-1">Room code</h2>
       <div id="lobby-code" class="bigcode">----</div>
@@ -181,7 +182,7 @@ ul.players .nm{overflow-wrap:anywhere;min-width:0}
         <span>Your target</span><span id="yours-state" class="yours-state">Open</span>
       </button>
       <div id="dossier" class="dossier">
-        <span class="stamp">Confidential</span>
+        <span class="stamp" aria-hidden="true">Confidential</span>
         <h2 id="dossier-h" class="eyebrow" tabindex="-1">Your target</h2>
         <button id="reveal" class="reveal" type="button" aria-pressed="false">
           <span class="tname" id="tname" dir="auto"><span class="redacted" aria-hidden="true">XXXXXXXX</span></span>
@@ -352,13 +353,12 @@ async function aesFor(priv, pubB64){
   return crypto.subtle.deriveKey({name:'ECDH', public: pub}, priv, {name:'AES-GCM', length:256}, false, ['encrypt','decrypt']);
 }
 
-function renderList(ul, list, gotSet){
+function renderList(ul, list){
   ul.replaceChildren(...list.map(p => {
     const li = document.createElement('li');
     const nm = document.createElement('span'); nm.className = 'nm'; nm.dir = 'auto'; nm.textContent = p.name + (p.me ? ' (you)' : '');
     const tags = document.createElement('span'); tags.className = 'tags';
     if (p.host){ const t = document.createElement('span'); t.className = 'tag host'; t.textContent = 'Host'; tags.append(t); }
-    if (gotSet){ const ok = gotSet.has(p.pid); const t = document.createElement('span'); t.className = 'tag' + (ok ? ' ok' : ''); t.textContent = ok ? 'Received' : 'Waiting'; tags.append(t); }
     li.append(nm, tags);
     return li;
   }));
@@ -405,7 +405,7 @@ function renderLobby(st, isHost){
   setText($('lobby-code'), session.code.toUpperCase());
   $('btn-copy').hidden = !st.hostPid;
   setText($('lobby-count'), n + ' joined · 20 max');
-  renderList($('players'), st.list, null);
+  renderList($('players'), st.list);
   $('host-controls').hidden = !isHost;
   if (!isHost && !st.hostPid) err('lobby-err', 'No room with that code yet. Double-check it with whoever created it.');
   else err('lobby-err', '');
@@ -430,7 +430,7 @@ function renderRoster(el, list, got){
     const g = document.createElement('div'); g.className = 'roster-group ' + cls;
     const h = document.createElement('h3'); h.textContent = label + ' · ' + items.length;
     const ul = document.createElement('ul'); ul.className = 'players';
-    renderList(ul, items, null);
+    renderList(ul, items);
     g.append(h, ul); groups.push(g);
   }
   el.replaceChildren(...groups);
