@@ -12,6 +12,7 @@
 :root{
   --bg:#eef1f4; --surface:#ffffff; --ink:#141a24; --muted:#5b6576; --line:#d5dbe3;
   --accent:#b4232f; --accent-ink:#ffffff; --ok:#1f7a4d; --soft:#f6e3e4;
+  --space-hair:4px; --space-tight:8px; --space-inline:12px; --space-stack:16px; --space-group:24px; --space-section:32px; --space-zone:48px; --tap:48px;
   --display:"Archivo Black","Arial Black",Impact,sans-serif;
   --body:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
@@ -24,55 +25,76 @@
   --accent:#ff5a63; --accent-ink:#1a0b0c; --ok:#4fd18b; --soft:#3a1d22; color-scheme:dark}
 html,body{min-height:100%}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 40px}
-main{max-width:460px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
-header{display:flex;flex-direction:column;gap:4px}
-.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:var(--space-group) var(--space-zone)}
+main{max-width:460px;margin:0 auto;display:flex;flex-direction:column;gap:var(--space-group)}
+header{display:flex;flex-direction:column;gap:var(--space-hair)}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;text-wrap:balance}
 h1{font-family:var(--display);font-size:clamp(34px,10vw,46px);line-height:.95;margin:0;letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance}
+/* Once inside a room the title steps down, so the room and the target lead. */
+body[data-screen="lobby"] h1,body[data-screen="target"] h1{font-size:28px}
 h2{font-family:var(--display);font-size:22px;margin:0;text-transform:uppercase;letter-spacing:.01em}
+h3{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 var(--space-tight)}
 p{margin:0}
 .muted{color:var(--muted)}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px;display:flex;flex-direction:column;gap:14px}
+.small{font-size:14px}
+.stack{display:flex;flex-direction:column;gap:var(--space-tight)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:var(--space-group);display:flex;flex-direction:column;gap:var(--space-stack)}
 label{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.field{display:flex;flex-direction:column;gap:6px}
-input{font:inherit;font-size:17px;padding:12px 14px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink);width:100%;box-sizing:border-box}
+.field{display:flex;flex-direction:column;gap:var(--space-tight)}
+input{font:inherit;font-size:17px;padding:var(--space-inline) var(--space-stack);min-height:var(--tap);border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink);width:100%;box-sizing:border-box}
 input.code{font-family:var(--mono);text-transform:uppercase;letter-spacing:.3em;font-size:22px}
 input:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-button{font:inherit;font-weight:700;font-size:16px;padding:13px 16px;border-radius:4px;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+button{font:inherit;font-weight:700;font-size:16px;padding:var(--space-inline) var(--space-stack);min-height:var(--tap);border-radius:4px;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
 button.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 button:disabled{opacity:.45;cursor:not-allowed}
-.row{display:flex;gap:10px;flex-wrap:wrap}
-.row>button{flex:1 1 140px}
-.divider{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.1em}
+.row{display:flex;gap:var(--space-inline);flex-wrap:wrap}
+.row>button{flex:1 1 120px}
+.divider{display:flex;align-items:center;gap:var(--space-inline);color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.1em}
 .divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
-.codebox{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.codebox{display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-inline);flex-wrap:wrap}
 .bigcode{font-family:var(--mono);font-weight:700;font-size:40px;letter-spacing:.25em;color:var(--accent)}
 ul.players{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-top:1px solid var(--line)}
-ul.players li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);min-width:0}
+ul.players li{display:flex;justify-content:space-between;align-items:center;gap:var(--space-inline);padding:var(--space-inline) 0;border-bottom:1px solid var(--line);min-width:0}
 ul.players .nm{overflow-wrap:anywhere;min-width:0}
-.tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:3px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.tags{display:flex;gap:var(--space-tight);flex-wrap:nowrap}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:2px var(--space-tight);border-radius:3px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
 .tag.host{border-color:var(--accent);color:var(--accent)}
 .tag.ok{border-color:var(--ok);color:var(--ok)}
 .count{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted)}
-.note{font-size:14px;padding:10px 12px;border-radius:4px;background:var(--soft);color:var(--ink)}
+.note{font-size:14px;padding:var(--space-tight) var(--space-inline);border-radius:4px;background:var(--soft);color:var(--ink)}
 .err{color:var(--accent);font-size:14px;font-weight:500}
-.dossier{background:var(--surface);border:2px solid var(--ink);border-radius:4px;padding:22px 20px;display:flex;flex-direction:column;gap:16px;position:relative}
-.stamp{align-self:flex-start;font-family:var(--display);text-transform:uppercase;color:var(--accent);border:3px solid var(--accent);padding:4px 10px;transform:rotate(-4deg);letter-spacing:.06em;font-size:15px}
-.reveal{font:inherit;border:1px dashed var(--muted);border-radius:4px;background:var(--bg);padding:26px 14px;min-height:96px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:100%;color:var(--ink);
+/* Lobby: code and invite, then the host's action, then the roster; the roster grows, so it goes last. */
+.lobby{gap:var(--space-group)}
+/* Target: regions separate at section rhythm. For the host, the shareable board leads and their own target is a sealed row. */
+#s-target{display:flex;flex-direction:column;gap:var(--space-section)}
+.board{display:flex;flex-direction:column;gap:var(--space-stack)}
+.board-count{display:flex;align-items:baseline;flex-wrap:wrap;gap:var(--space-hair) var(--space-tight)}
+.board-num{font-family:var(--display);font-size:40px;line-height:1;text-transform:uppercase;font-variant-numeric:tabular-nums}
+.roster{display:flex;flex-direction:column;gap:var(--space-group)}
+.roster-group.received .nm{color:var(--muted)}
+.yours{display:flex;flex-direction:column;gap:var(--space-stack)}
+.yours-toggle{display:flex;justify-content:space-between;align-items:center;gap:var(--space-inline);width:100%;min-height:56px;border:2px solid var(--ink);background:var(--surface);text-align:left;font-family:var(--display);text-transform:uppercase;letter-spacing:.01em}
+/* The row already says "Your target"; don't repeat it inside the opened dossier. */
+#yours-toggle:not([hidden]) ~ #dossier div:has(> .eyebrow){display:none}
+.yours-state{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--accent)}
+.dossier{background:var(--surface);border:2px solid var(--ink);border-radius:4px;padding:var(--space-group);display:flex;flex-direction:column;gap:var(--space-stack);position:relative}
+.stamp{align-self:flex-start;font-family:var(--display);text-transform:uppercase;color:var(--accent);border:3px solid var(--accent);padding:var(--space-hair) var(--space-inline);transform:rotate(-4deg);letter-spacing:.06em;font-size:15px}
+.reveal{font:inherit;border:1px dashed var(--muted);border-radius:4px;background:var(--bg);padding:var(--space-group) var(--space-stack);min-height:96px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-tight);width:100%;color:var(--ink);
   -webkit-touch-callout:none;-webkit-user-select:none;user-select:none;touch-action:none}
 .reveal[aria-pressed="true"]{border-style:solid;border-color:var(--accent)}
 .reveal .tname{font-family:var(--display);font-size:clamp(30px,9vw,40px);line-height:1.05;text-transform:uppercase;overflow-wrap:anywhere}
 .reveal .hint{font-size:13px;color:var(--muted);font-weight:500}
 .redacted{display:inline-block;background:var(--ink);color:transparent;border-radius:2px;user-select:none}
-.meta{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px}
+.meta{display:grid;grid-template-columns:auto 1fr;gap:var(--space-hair) var(--space-stack);font-size:14px}
 .meta dt{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);padding-top:2px}
 .meta dd{margin:0;overflow-wrap:anywhere}
-.linkbtn{background:none;border:none;padding:4px 0;font-weight:500;color:var(--muted);text-decoration:underline;font-size:14px;align-self:flex-start}
-.invite{display:flex;flex-direction:column;gap:8px}
+.linkbtn{background:none;border:none;padding:var(--space-inline) 0;font-weight:500;color:var(--muted);text-decoration:underline;font-size:14px;align-self:flex-start}
+.invite{display:flex;flex-direction:column;gap:var(--space-tight)}
 .invite input{font-family:var(--mono);font-size:14px}
-.leave-zone{margin-top:40px;padding-top:8px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
-.leave-zone .linkbtn{padding:12px 0}
-.confirm{display:flex;flex-direction:column;gap:12px;padding-top:8px}
+.leave-zone{margin-top:var(--space-zone);padding-top:var(--space-tight);border-top:1px solid var(--line);display:flex;flex-direction:column;gap:var(--space-inline)}
+#s-target>.leave-zone{margin-top:var(--space-stack)}
+.card>.leave-zone{margin-top:0}
+.confirm{display:flex;flex-direction:column;gap:var(--space-inline);padding-top:var(--space-tight)}
 .sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 footer{font-size:13px;color:var(--muted);text-align:center}
 @media (prefers-reduced-motion:no-preference){.stamp{animation:thunk .35s ease-out}}
@@ -105,63 +127,70 @@ footer{font-size:13px;color:var(--muted);text-align:center}
     <div class="divider">or</div>
     <button id="btn-create" type="button">Create a new room</button>
     <p id="home-err" class="err" hidden></p>
-    <p class="muted" style="font-size:14px">Whoever creates the room presses Start once everyone is in. Each phone then gets one name, and nobody sees anyone else's.</p>
+    <p class="muted small">Whoever creates the room presses Start once everyone is in. Each phone then gets one name, and nobody sees anyone else's.</p>
   </form>
 
   <!-- Lobby -->
-  <section id="s-lobby" class="card" hidden>
-    <div class="codebox">
-      <div><label>Room code</label><div id="lobby-code" class="bigcode">----</div></div>
-      <span id="lobby-count" class="count">0 / 20</span>
+  <section id="s-lobby" class="card lobby" hidden>
+    <div class="stack">
+      <div class="codebox">
+        <div><label>Room code</label><div id="lobby-code" class="bigcode">----</div></div>
+        <span id="lobby-count" class="count">0 / 20</span>
+      </div>
+      <p class="muted" id="lobby-help">Share this code with the group. Players appear here as they join.</p>
     </div>
-    <p class="muted" id="lobby-help">Share this code with the group. Players appear here as they join.</p>
     <div class="invite">
       <button id="btn-copy" type="button">Copy invite link</button>
       <input id="invite-url" readonly hidden aria-label="Invite link">
     </div>
-    <ul id="players" class="players"></ul>
-    <div id="host-controls" hidden>
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <button id="btn-start" class="primary" disabled>Start game</button>
-        <p id="start-hint" class="muted" style="font-size:14px">Need at least 3 players.</p>
-      </div>
+    <div id="host-controls" class="stack" hidden>
+      <button id="btn-start" class="primary" disabled>Start game</button>
+      <p id="start-hint" class="muted small">Need at least 3 players.</p>
     </div>
     <p id="wait-msg" class="note" hidden>Waiting for the host to start the game.</p>
     <p id="lobby-err" class="err" hidden></p>
-    <button id="btn-leave" class="linkbtn">Leave room</button>
+    <ul id="players" class="players"></ul>
+    <div class="leave-zone">
+      <button id="btn-leave" type="button" class="linkbtn">Leave room</button>
+    </div>
   </section>
 
   <!-- Target -->
   <section id="s-target" hidden>
-    <div class="dossier">
-      <span class="stamp">Confidential</span>
-      <div>
-        <span class="eyebrow">Your target</span>
-      </div>
-      <button id="reveal" class="reveal" type="button" aria-pressed="false">
-        <span class="tname" id="tname"><span class="redacted" aria-hidden="true">XXXXXXXX</span></span>
-        <span class="hint" id="thint">Press and hold to reveal. Check nobody's looking.</span>
-      </button>
-      <span id="reveal-live" class="sr-only" aria-live="polite"></span>
-      <dl class="meta">
-        <dt>Agent</dt><dd id="t-me"></dd>
-        <dt>Room</dt><dd id="t-room"></dd>
-        <dt>Rule</dt><dd>Your target is yours alone. Nobody else has them, and nobody has you twice.</dd>
-      </dl>
-    </div>
-    <div id="host-status" class="card" style="margin-top:20px" hidden>
+    <div id="host-status" class="board" hidden>
       <h2>Host panel</h2>
-      <p><span id="delivered" class="count" style="font-size:15px">0 / 0</span> <span class="muted">players have received their target.</span></p>
-      <p class="note">Everyone's target is sealed so only their phone can open it. Players have 12 hours to open the page and get theirs.</p>
-      <ul id="host-players" class="players"></ul>
+      <p class="board-count" aria-live="polite"><span id="delivered" class="board-num">0 of 0</span> <span class="muted">players have received their target.</span></p>
+      <p class="muted small">Everyone's target is sealed so only their phone can open it. Players have 12 hours to open the page and get theirs.</p>
+      <div id="host-roster" class="roster"></div>
+    </div>
+    <div class="yours">
+      <button id="yours-toggle" type="button" class="yours-toggle" aria-expanded="false" aria-controls="dossier" hidden>
+        <span>Your target</span><span id="yours-state" class="yours-state">Open</span>
+      </button>
+      <div id="dossier" class="dossier">
+        <span class="stamp">Confidential</span>
+        <div>
+          <span class="eyebrow">Your target</span>
+        </div>
+        <button id="reveal" class="reveal" type="button" aria-pressed="false">
+          <span class="tname" id="tname"><span class="redacted" aria-hidden="true">XXXXXXXX</span></span>
+          <span class="hint" id="thint">Press and hold to reveal. Check nobody's looking.</span>
+        </button>
+        <span id="reveal-live" class="sr-only" aria-live="polite"></span>
+        <dl class="meta">
+          <dt>Agent</dt><dd id="t-me"></dd>
+          <dt>Room</dt><dd id="t-room"></dd>
+          <dt>Rule</dt><dd>Your target is yours alone. Nobody else has them, and nobody has you twice.</dd>
+        </dl>
+      </div>
     </div>
     <div class="leave-zone">
       <button id="btn-leave2" type="button" class="linkbtn">Leave this game</button>
       <div id="leave-confirm" class="confirm" role="group" aria-labelledby="leave-q" hidden>
         <p id="leave-q">Leave this game? You can rejoin with code <strong id="leave-code"></strong> on this phone to see your target again.</p>
         <div class="row">
-          <button id="leave-yes" type="button" class="primary">Leave</button>
           <button id="leave-no" type="button">Cancel</button>
+          <button id="leave-yes" type="button" class="primary">Leave</button>
         </div>
       </div>
     </div>
@@ -200,7 +229,7 @@ const ECDH = {name:'ECDH', namedCurve:'P-256'};
 
 let session = null, myKey = null, es = null, msgs = [], seen = new Set(), busy = false;
 
-function show(screen){ for (const s of ['home','lobby','target']) $('s-'+s).hidden = s !== screen; }
+function show(screen){ for (const s of ['home','lobby','target']) $('s-'+s).hidden = s !== screen; document.body.dataset.screen = screen; }
 function err(id, msg){ const el = $(id); el.textContent = msg || ''; el.hidden = !msg; }
 
 // ---- relay ----
@@ -287,7 +316,7 @@ function renderList(ul, list, gotSet){
   ul.replaceChildren(...list.map(p => {
     const li = document.createElement('li');
     const nm = document.createElement('span'); nm.className = 'nm'; nm.textContent = p.name + (p.me ? ' (you)' : '');
-    const tags = document.createElement('span'); tags.className = 'row'; tags.style.gap = '6px'; tags.style.flexWrap = 'nowrap';
+    const tags = document.createElement('span'); tags.className = 'tags';
     if (p.host){ const t = document.createElement('span'); t.className = 'tag host'; t.textContent = 'Host'; tags.append(t); }
     if (gotSet){ const ok = gotSet.has(p.pid); const t = document.createElement('span'); t.className = 'tag' + (ok ? ' ok' : ''); t.textContent = ok ? 'Received' : 'Waiting'; tags.append(t); }
     li.append(nm, tags);
@@ -317,8 +346,9 @@ async function update(){
       showTarget(saved.target, isHost);
       if (isHost){
         const inGame = st.start.pids.map(id => st.list.find(p => p.pid === id) || {pid:id, name:'?', host:false, me:false}).filter(Boolean);
-        $('delivered').textContent = st.got.size + ' / ' + st.start.pids.length;
-        renderList($('host-players'), inGame, st.got);
+        const received = inGame.filter(p => st.got.has(p.pid)).length;
+        $('delivered').textContent = received === inGame.length ? 'All ' + received : received + ' of ' + inGame.length;
+        renderRoster($('host-roster'), inGame, st.got);
       }
       return;
     }
@@ -351,6 +381,31 @@ function renderLobby(st, isHost){
 }
 
 let targetName = '', revealed = false, revealTimer = null;
+// Host roster: who still needs to open the page comes first, since that's who the host is chasing.
+function renderRoster(el, list, got){
+  const groups = [];
+  for (const [label, cls, items] of [['Waiting', 'waiting', list.filter(p => !got.has(p.pid))], ['Received', 'received', list.filter(p => got.has(p.pid))]]){
+    if (!items.length) continue;
+    const g = document.createElement('div'); g.className = 'roster-group ' + cls;
+    const h = document.createElement('h3'); h.textContent = label + ' · ' + items.length;
+    const ul = document.createElement('ul'); ul.className = 'players';
+    renderList(ul, items, null);
+    g.append(h, ul); groups.push(g);
+  }
+  el.replaceChildren(...groups);
+}
+
+// The host shows their board to friends, so their own dossier stays sealed behind a row they open themselves.
+let isHostView = false, yoursOpen = false, yoursTimer = null;
+function setYours(open){
+  clearTimeout(yoursTimer);
+  yoursOpen = open;
+  if (!open && revealed) setReveal(false);
+  $('dossier').hidden = isHostView && !open;
+  $('yours-toggle').setAttribute('aria-expanded', open ? 'true' : 'false');
+  $('yours-state').textContent = open ? 'Close' : 'Open';
+  if (open && isHostView) yoursTimer = setTimeout(() => setYours(false), 30000);
+}
 function showTarget(name, isHost){
   show('target');
   $('t-me').textContent = session.name;
@@ -358,6 +413,8 @@ function showTarget(name, isHost){
   $('leave-code').textContent = session.code.toUpperCase();
   targetName = name;
   $('host-status').hidden = !isHost;
+  $('yours-toggle').hidden = !isHost;
+  if (isHost !== isHostView){ isHostView = isHost; setYours(false); }
 }
 function hideName(){
   $('tname').innerHTML = '<span class="redacted" aria-hidden="true">XXXXXXXX</span>';
@@ -385,9 +442,11 @@ revealBtn.addEventListener('keyup', e => { if (e.key === ' ' || e.key === 'Enter
 // Screen readers activate with a bare click (no pointer or key press); show for the 5 seconds.
 revealBtn.addEventListener('click', e => { if (e.detail === 0 && Date.now() - lastKey > 300) setReveal(true); });
 revealBtn.addEventListener('contextmenu', e => e.preventDefault());
-document.addEventListener('visibilitychange', () => { if (document.hidden && revealed) setReveal(false); });
-addEventListener('pagehide', () => { if (revealed) setReveal(false); });
-addEventListener('blur', () => { if (revealed) setReveal(false); });
+$('yours-toggle').addEventListener('click', () => setYours(!yoursOpen));
+const seal = () => { if (revealed) setReveal(false); if (isHostView && yoursOpen) setYours(false); };
+document.addEventListener('visibilitychange', () => { if (document.hidden) seal(); });
+addEventListener('pagehide', seal);
+addEventListener('blur', seal);
 
 async function enterRoom(code, name, opts = {}){
   busy = true;
@@ -483,7 +542,7 @@ async function leave(){
   }
   LS.del('sa.session');
   if (es){ es.close(); es = null; }
-  session = null; msgs = []; targetName = ''; setReveal(false); closeLeaveConfirm(false);
+  session = null; msgs = []; targetName = ''; setReveal(false); isHostView = false; setYours(false); closeLeaveConfirm(false);
   err('lobby-err',''); show('home');
 }
 function openLeaveConfirm(){ $('btn-leave2').hidden = true; $('leave-confirm').hidden = false; $('leave-no').focus(); }
@@ -507,7 +566,7 @@ $('btn-copy').addEventListener('click', async () => {
     setTimeout(() => { btn.textContent = 'Copy invite link'; }, 2000);
   } catch(e){
     field.value = url; field.hidden = false; field.focus(); field.select();
-    btn.textContent = 'Select the link above and copy it';
+    btn.textContent = 'Select the link below and copy it';
   }
 });
 
