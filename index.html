@@ -6,146 +6,208 @@
 <title>Stuy Town Assassin</title>
 <meta name="description" content="Join the lobby, get your secret target.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Fonts load without blocking first paint; the fallback stacks render until they arrive. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap"></noscript>
 <style>
 /* Layout: one narrow column, a single "case file" card per screen, built for a phone in one hand */
 :root{
   --bg:#eef1f4; --surface:#ffffff; --ink:#141a24; --muted:#5b6576; --line:#d5dbe3;
-  --accent:#b4232f; --accent-ink:#ffffff; --ok:#1f7a4d; --soft:#f6e3e4;
+  --accent:#b4232f; --accent-ink:#ffffff; --ok:#1f7a4d; --soft:#f6e3e4; --field-line:#7f8999;
+  --space-hair:4px; --space-tight:8px; --space-inline:12px; --space-stack:16px; --space-group:24px; --space-section:32px; --space-zone:48px; --tap:48px;
   --display:"Archivo Black","Arial Black",Impact,sans-serif;
   --body:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#0f141c; --surface:#18202b; --ink:#e8edf3; --muted:#93a0b2; --line:#2a3442;
-  --accent:#ff5a63; --accent-ink:#1a0b0c; --ok:#4fd18b; --soft:#3a1d22; color-scheme:dark}}
+  --accent:#ff5a63; --accent-ink:#1a0b0c; --ok:#4fd18b; --soft:#3a1d22; --field-line:#66738a; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0f141c; --surface:#18202b; --ink:#e8edf3; --muted:#93a0b2; --line:#2a3442;
-  --accent:#ff5a63; --accent-ink:#1a0b0c; --ok:#4fd18b; --soft:#3a1d22; color-scheme:dark}
+  --accent:#ff5a63; --accent-ink:#1a0b0c; --ok:#4fd18b; --soft:#3a1d22; --field-line:#66738a; color-scheme:dark}
 html,body{min-height:100%}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 40px}
-main{max-width:460px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
-header{display:flex;flex-direction:column;gap:4px}
-.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
-h1{font-family:var(--display);font-size:clamp(34px,10vw,46px);line-height:.95;margin:0;letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance}
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:var(--space-group) var(--space-zone)}
+body>header,body>main{max-width:460px;margin-inline:auto}
+main{display:flex;flex-direction:column;gap:var(--space-group)}
+body>header{display:flex;flex-direction:column;gap:var(--space-hair);margin-bottom:var(--space-group)}
+::selection{background:var(--accent);color:var(--accent-ink)}
+input{caret-color:var(--accent)}
+input::placeholder{color:var(--muted);opacity:1}
+[tabindex="-1"]:focus{outline:none}
+[tabindex="-1"]:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+.eyebrow{margin:0;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700;text-wrap:balance}
+h1{font-family:var(--display);font-size:clamp(26px,10vw,46px);line-height:.95;margin:0;letter-spacing:-.01em;text-transform:uppercase;text-wrap:balance}
+/* Once inside a room the title steps down, so the room and the target lead. */
+body[data-screen="lobby"] h1,body[data-screen="target"] h1{font-size:clamp(22px,7.5vw,28px)}
 h2{font-family:var(--display);font-size:22px;margin:0;text-transform:uppercase;letter-spacing:.01em}
+h3{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 var(--space-tight)}
 p{margin:0}
 .muted{color:var(--muted)}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:20px;display:flex;flex-direction:column;gap:14px}
-label{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.field{display:flex;flex-direction:column;gap:6px}
-input{font:inherit;font-size:17px;padding:12px 14px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink);width:100%;box-sizing:border-box}
+.small{font-size:14px}
+.stack{display:flex;flex-direction:column;gap:var(--space-tight)}
+.card{background:var(--surface);border:2px solid var(--ink);border-radius:4px;padding:clamp(var(--space-stack),6vw,var(--space-group));display:flex;flex-direction:column;gap:var(--space-stack)}
+label,.label{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0}
+.field{display:flex;flex-direction:column;gap:var(--space-tight)}
+input{font:inherit;font-size:17px;padding:var(--space-inline) var(--space-stack);min-height:var(--tap);border:1px solid var(--field-line);border-radius:4px;background:var(--bg);color:var(--ink);width:100%;box-sizing:border-box}
 input.code{font-family:var(--mono);text-transform:uppercase;letter-spacing:.3em;font-size:22px}
 input:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-button{font:inherit;font-weight:700;font-size:16px;padding:13px 16px;border-radius:4px;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+button{font:inherit;font-weight:700;font-size:16px;padding:var(--space-inline) var(--space-stack);min-height:var(--tap);border-radius:4px;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+button.wide{width:100%}
 button.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 button:disabled{opacity:.45;cursor:not-allowed}
-.row{display:flex;gap:10px;flex-wrap:wrap}
-.row>button{flex:1 1 140px}
-.divider{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.1em}
+.row{display:flex;gap:var(--space-inline);flex-wrap:wrap}
+.row>button{flex:1 1 120px}
+.divider{display:flex;align-items:center;gap:var(--space-inline);color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.1em}
 .divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
-.codebox{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.bigcode{font-family:var(--mono);font-weight:700;font-size:40px;letter-spacing:.25em;color:var(--accent)}
+.bigcode{font-family:var(--mono);font-weight:700;font-size:clamp(28px,10vw,40px);letter-spacing:.25em;color:var(--accent)}
 ul.players{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-top:1px solid var(--line)}
-ul.players li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);min-width:0}
+ul.players li{display:flex;justify-content:space-between;align-items:center;gap:var(--space-inline);padding:var(--space-inline) 0;border-bottom:1px solid var(--line);min-width:0}
 ul.players .nm{overflow-wrap:anywhere;min-width:0}
-.tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:3px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.tags{display:flex;gap:var(--space-tight);flex-wrap:nowrap}
+.tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:2px var(--space-tight);border-radius:3px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
 .tag.host{border-color:var(--accent);color:var(--accent)}
-.tag.ok{border-color:var(--ok);color:var(--ok)}
-.count{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted)}
-.note{font-size:14px;padding:10px 12px;border-radius:4px;background:var(--soft);color:var(--ink)}
+.note{font-size:14px;padding:var(--space-tight) var(--space-inline);border-radius:4px;background:var(--soft);color:var(--ink)}
 .err{color:var(--accent);font-size:14px;font-weight:500}
-.dossier{background:var(--surface);border:2px solid var(--ink);border-radius:4px;padding:22px 20px;display:flex;flex-direction:column;gap:16px;position:relative}
-.stamp{align-self:flex-start;font-family:var(--display);text-transform:uppercase;color:var(--accent);border:3px solid var(--accent);padding:4px 10px;transform:rotate(-4deg);letter-spacing:.06em;font-size:15px}
-.reveal{font:inherit;border:1px dashed var(--muted);border-radius:4px;background:var(--bg);padding:26px 14px;min-height:96px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;width:100%;color:var(--ink)}
-.reveal .tname{font-family:var(--display);font-size:clamp(30px,9vw,40px);line-height:1.05;text-transform:uppercase;overflow-wrap:anywhere}
+/* Lobby: code and invite, then the host's action, then the roster; the roster grows, so it goes last. */
+.lobby{gap:var(--space-group)}
+/* Target: regions separate at section rhythm. For the host, the shareable board leads and their own target is a sealed row. */
+#s-target{display:flex;flex-direction:column;gap:var(--space-section)}
+.board{display:flex;flex-direction:column;gap:var(--space-stack)}
+.board-count{display:flex;align-items:baseline;flex-wrap:wrap;gap:var(--space-hair) var(--space-tight)}
+.board-num{font-family:var(--display);font-size:clamp(28px,10vw,40px);line-height:1;text-transform:uppercase;font-variant-numeric:tabular-nums}
+.roster{display:flex;flex-direction:column;gap:var(--space-group)}
+.roster-group.received .nm{color:var(--muted)}
+.yours{display:flex;flex-direction:column;gap:var(--space-stack)}
+.yours-toggle{display:flex;justify-content:space-between;align-items:center;gap:var(--space-inline);width:100%;min-height:56px;border:2px solid var(--ink);background:var(--surface);text-align:left;font-family:var(--display);text-transform:uppercase;letter-spacing:.01em}
+/* The row already says "Your target"; don't repeat it inside the opened dossier. */
+#yours-toggle:not([hidden]) ~ #dossier #dossier-h{display:none}
+.yours-state{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--accent)}
+.dossier{background:var(--surface);border:2px solid var(--ink);border-radius:4px;padding:var(--space-group);display:flex;flex-direction:column;gap:var(--space-stack);position:relative}
+.dossier{padding:clamp(var(--space-stack),6vw,var(--space-group))}
+.stamp{align-self:flex-start;font-family:var(--display);text-transform:uppercase;color:var(--accent);border:3px solid var(--accent);padding:var(--space-hair) var(--space-inline);transform:rotate(-4deg);letter-spacing:.06em;font-size:clamp(11px,3.9vw,15px);max-width:100%}
+.reveal{font:inherit;border:1px dashed var(--muted);border-radius:4px;background:var(--bg);padding:var(--space-group) var(--space-stack);min-height:96px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-tight);width:100%;color:var(--ink);
+  -webkit-touch-callout:none;-webkit-user-select:none;user-select:none;touch-action:none}
+.reveal[aria-pressed="true"]{border-style:solid;border-color:var(--accent)}
+.reveal .tname{font-family:var(--display);font-size:clamp(22px,9vw,40px);line-height:1.05;text-transform:uppercase;overflow-wrap:anywhere}
 .reveal .hint{font-size:13px;color:var(--muted);font-weight:500}
 .redacted{display:inline-block;background:var(--ink);color:transparent;border-radius:2px;user-select:none}
-.meta{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:14px}
+.meta{display:grid;grid-template-columns:auto 1fr;gap:var(--space-hair) var(--space-stack);font-size:14px}
 .meta dt{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);padding-top:2px}
 .meta dd{margin:0;overflow-wrap:anywhere}
-.linkbtn{background:none;border:none;padding:4px 0;font-weight:500;color:var(--muted);text-decoration:underline;font-size:14px;align-self:flex-start}
-footer{font-size:13px;color:var(--muted);text-align:center}
-@media (prefers-reduced-motion:no-preference){.stamp{animation:thunk .35s ease-out}}
+.linkbtn{background:none;border:none;padding:var(--space-inline) 0;font-weight:500;color:var(--muted);text-decoration:underline;font-size:14px;align-self:flex-start}
+.invite{display:flex;flex-direction:column;gap:var(--space-tight)}
+.invite input{font-family:var(--mono);font-size:14px}
+.leave-zone{margin-top:var(--space-zone);padding-top:var(--space-tight);border-top:1px solid var(--line);display:flex;flex-direction:column;gap:var(--space-inline)}
+#s-target>.leave-zone{margin-top:var(--space-stack)}
+.card>.leave-zone{margin-top:0}
+.confirm{display:flex;flex-direction:column;gap:var(--space-inline);padding-top:var(--space-tight)}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+/* The stamp lands once, on the first reveal: the moment the game becomes real. */
+@media (prefers-reduced-motion:no-preference){.stamp.thunk{animation:thunk .35s ease-out}}
 @keyframes thunk{from{transform:rotate(-4deg) scale(1.6);opacity:0}to{transform:rotate(-4deg) scale(1);opacity:1}}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
 </head>
 <body>
+<header>
+  <span class="eyebrow">3 to 20 players · one loop · no peeking</span>
+  <h1>Stuy Town Assassin</h1>
+</header>
 <main>
-  <header>
-    <span class="eyebrow">3 to 20 players · one loop · no peeking</span>
-    <h1>Stuy Town Assassin</h1>
-  </header>
+  <!-- Screen-reader announcements for errors and status changes -->
+  <div id="say-polite" class="sr-only" aria-live="polite"></div>
+  <div id="say-alert" class="sr-only" aria-live="assertive"></div>
 
   <p id="testbar" class="note" hidden><strong>Test mode.</strong> Every tab you open with this link counts as a different player. Use a different name in each tab.</p>
 
-  <p id="offline" class="note" hidden>Lost the connection to the game server. Check your signal; it reconnects on its own.</p>
+  <p id="offline" class="note" role="status" hidden>Lost connection. Check your signal; the game reconnects on its own.</p>
 
   <!-- Home -->
-  <section id="s-home" class="card">
+  <form id="s-home" class="card" novalidate aria-labelledby="home-h">
+    <span class="stamp" aria-hidden="true">Recruiting</span>
+    <h2 id="home-h" class="sr-only" tabindex="-1">Join or create a room</h2>
     <div class="field">
       <label for="name">Your name</label>
-      <input id="name" maxlength="20" autocomplete="nickname" placeholder="e.g. Indra">
+      <input id="name" maxlength="20" dir="auto" autocomplete="nickname" enterkeyhint="next" placeholder="e.g. Indra">
     </div>
     <div class="field">
       <label for="code">Room code</label>
-      <input id="code" class="code" maxlength="4" autocomplete="off" autocapitalize="characters" placeholder="ABCD">
+      <input id="code" class="code" maxlength="4" autocomplete="off" autocapitalize="characters" autocorrect="off" spellcheck="false" enterkeyhint="go" placeholder="ABCD">
     </div>
-    <button id="btn-join" class="primary">Join room</button>
+    <button id="btn-join" type="submit" class="primary">Join room</button>
     <div class="divider">or</div>
-    <button id="btn-create">Create a new room</button>
+    <button id="btn-create" type="button">Create a new room</button>
     <p id="home-err" class="err" hidden></p>
-    <p class="muted" style="font-size:14px">Whoever creates the room presses Start once everyone is in. Each phone then gets one name, and nobody sees anyone else's.</p>
-  </section>
+    <p class="muted small">Whoever creates the room presses Start once everyone is in. Each phone then gets one name, and the names form one loop: everyone hunts one person and is hunted by one. Nobody sees anyone else's.</p>
+  </form>
 
   <!-- Lobby -->
-  <section id="s-lobby" class="card" hidden>
-    <div class="codebox">
-      <div><label>Room code</label><div id="lobby-code" class="bigcode">----</div></div>
-      <span id="lobby-count" class="count">0 / 20</span>
+  <section id="s-lobby" class="card lobby" aria-labelledby="lobby-h" hidden>
+    <span class="stamp" aria-hidden="true">Standby</span>
+    <div class="stack">
+      <h2 id="lobby-h" class="label" tabindex="-1">Room code</h2>
+      <div id="lobby-code" class="bigcode">----</div>
+      <p class="muted" id="lobby-help">Share this code with the group. Players appear here as they join.</p>
     </div>
-    <p class="muted" id="lobby-help">Share this code with the group. Players appear here as they join.</p>
-    <ul id="players" class="players"></ul>
+    <div class="invite">
+      <button id="btn-copy" type="button">Copy invite link</button>
+      <input id="invite-url" readonly hidden aria-label="Invite link">
+    </div>
+    <dl class="meta">
+      <dt>Agents</dt><dd id="lobby-count" aria-live="polite">0 joined · 20 max</dd>
+      <dt>Status</dt><dd id="lobby-status" aria-live="polite">Waiting for the host to start the game.</dd>
+    </dl>
     <div id="host-controls" hidden>
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <button id="btn-start" class="primary" disabled>Start game</button>
-        <p id="start-hint" class="muted" style="font-size:14px">Need at least 3 players.</p>
-      </div>
+      <button id="btn-start" class="primary wide" disabled>Start game</button>
     </div>
-    <p id="wait-msg" class="note" hidden>Waiting for the host to start the game.</p>
     <p id="lobby-err" class="err" hidden></p>
-    <button id="btn-leave" class="linkbtn">Leave room</button>
+    <ul id="players" class="players"></ul>
+    <div class="leave-zone">
+      <button id="btn-leave" type="button" class="linkbtn">Leave room</button>
+    </div>
   </section>
 
   <!-- Target -->
   <section id="s-target" hidden>
-    <div class="dossier">
-      <span class="stamp">Confidential</span>
-      <div>
-        <span class="eyebrow">Your target</span>
-      </div>
-      <button id="reveal" class="reveal" aria-live="polite">
-        <span class="tname" id="tname"><span class="redacted">XXXXXXXX</span></span>
-        <span class="hint" id="thint">Tap to reveal. Check nobody's looking.</span>
+    <div id="host-status" class="board" hidden>
+      <h2 id="board-h" tabindex="-1">Host panel</h2>
+      <p class="board-count" aria-live="polite"><span id="delivered" class="board-num">0 of 0</span> <span class="muted">players have received their target.</span></p>
+      <p class="muted small">Everyone's target is sealed so only their phone can open it. Players have 12 hours to open the page and get theirs.</p>
+      <div id="host-roster" class="roster"></div>
+    </div>
+    <div class="yours">
+      <button id="yours-toggle" type="button" class="yours-toggle" aria-expanded="false" aria-controls="dossier" hidden>
+        <span>Your target</span><span id="yours-state" class="yours-state">Open</span>
       </button>
-      <dl class="meta">
-        <dt>Agent</dt><dd id="t-me"></dd>
-        <dt>Room</dt><dd id="t-room"></dd>
-        <dt>Rule</dt><dd>Your target is yours alone. Nobody else has them, and nobody has you twice.</dd>
-      </dl>
+      <div id="dossier" class="dossier">
+        <span class="stamp" aria-hidden="true">Confidential</span>
+        <h2 id="dossier-h" class="eyebrow" tabindex="-1">Your target</h2>
+        <button id="reveal" class="reveal" type="button" aria-pressed="false">
+          <span class="tname" id="tname" dir="auto"><span class="redacted" aria-hidden="true">XXXXXXXX</span></span>
+          <span class="hint" id="thint">Hold to peek, or tap for 5 seconds. Check nobody's looking.</span>
+        </button>
+        <span id="reveal-live" class="sr-only" aria-live="polite"></span>
+        <dl class="meta">
+          <dt>Agent</dt><dd id="t-me" dir="auto"></dd>
+          <dt>Room</dt><dd id="t-room"></dd>
+          <dt>Rule</dt><dd>Your target is yours alone. Nobody else has them, and nobody has you twice.</dd>
+          <dt>Saved</dt><dd>On this phone. Reopen this page any time to check your target again.</dd>
+        </dl>
+      </div>
     </div>
-    <div id="host-status" class="card" style="margin-top:20px" hidden>
-      <h2>Host panel</h2>
-      <p><span id="delivered" class="count" style="font-size:15px">0 / 0</span> <span class="muted">players have received their target.</span></p>
-      <p class="note">Everyone's target is sealed so only their phone can open it. Players have 12 hours to open the page and get theirs.</p>
-      <ul id="host-players" class="players"></ul>
+    <div class="leave-zone">
+      <button id="btn-leave2" type="button" class="linkbtn">Leave this game</button>
+      <div id="leave-confirm" class="confirm" role="group" aria-labelledby="leave-q" hidden>
+        <p id="leave-q">Leave this game? You can rejoin with code <strong id="leave-code"></strong> on this phone to see your target again.</p>
+        <div class="row">
+          <button id="leave-no" type="button">Cancel</button>
+          <button id="leave-yes" type="button" class="primary">Leave</button>
+        </div>
+      </div>
     </div>
-    <button id="btn-leave2" class="linkbtn" style="margin-top:12px">Leave this game</button>
   </section>
-
-  <footer>Targets form one secret loop, so every player hunts exactly one person and is hunted by exactly one.</footer>
 </main>
 <script>
 (() => {
@@ -154,7 +216,11 @@ const PREFIX = 'stuytown-assassin-v1-';
 const $ = id => document.getElementById(id);
 
 // Test mode (#test): each browser tab acts as a separate player.
-const TEST = location.hash === '#test';
+// Invite links carry the room code: #ABCD, or #test/ABCD in test mode. Lowercase "test" is reserved for test mode.
+const hashParts = location.hash.slice(1).split('/');
+const TEST = hashParts[0] === 'test';
+const hashCode = (hashParts[TEST ? 1 : 0] || '').toLowerCase();
+const LINK_CODE = /^[a-z]{4}$/.test(hashCode) ? hashCode : null;
 const store = () => TEST ? sessionStorage : localStorage;
 const LS = {
   get(k){ try{ const v = store().getItem(k); return v ? JSON.parse(v) : null; }catch(e){ return null; } },
@@ -174,13 +240,45 @@ const ECDH = {name:'ECDH', namedCurve:'P-256'};
 
 let session = null, myKey = null, es = null, msgs = [], seen = new Set(), busy = false;
 
-function show(screen){ for (const s of ['home','lobby','target']) $('s-'+s).hidden = s !== screen; }
-function err(id, msg){ const el = $(id); el.textContent = msg || ''; el.hidden = !msg; }
+let shown = 'home';
+function show(screen){
+  for (const s of ['home','lobby','target']) $('s-'+s).hidden = s !== screen;
+  document.body.dataset.screen = screen;
+  // Land keyboard and screen-reader focus on the new screen's heading, so nobody is left on a hidden button.
+  if (screen !== shown){
+    shown = screen;
+    const h = screen === 'target' ? $($('host-status').hidden ? 'dossier-h' : 'board-h') : $(screen + '-h');
+    if (h) h.focus();
+  }
+}
+// Announce through always-present live regions; text swapped into a just-unhidden element is often missed.
+function say(msg, urgent){
+  const el = $(urgent ? 'say-alert' : 'say-polite');
+  el.textContent = '';
+  setTimeout(() => { el.textContent = msg; }, 50);
+}
+function setText(el, txt){ if (el.textContent !== txt) el.textContent = txt; }
+function err(id, msg){
+  const el = $(id), changed = el.textContent !== (msg || '');
+  el.textContent = msg || ''; el.hidden = !msg;
+  if (msg && changed) say(msg, true);
+}
+function homeErr(msg, field){
+  err('home-err', msg);
+  for (const f of ['name','code']){
+    const el = $(f);
+    if (msg && el === field){ el.setAttribute('aria-invalid', 'true'); el.setAttribute('aria-describedby', 'home-err'); }
+    else { el.removeAttribute('aria-invalid'); el.removeAttribute('aria-describedby'); }
+  }
+  if (msg && field) field.focus();
+}
 
 // ---- relay ----
 async function publish(code, obj){
   const r = await fetch(RELAY + PREFIX + code, {method:'POST', body: JSON.stringify(obj)});
   if (!r.ok) throw new Error('relay ' + r.status);
+  // ntfy echoes the stored message. Ingest it here so our own messages never depend on the live feed catching them.
+  try { const m = await r.json(); if (session && session.code === code && ingest(m)) update(); } catch(e){}
 }
 async function pollAll(code){
   const r = await fetch(RELAY + PREFIX + code + '/json?poll=1&since=all');
@@ -195,7 +293,17 @@ async function pollAll(code){
 function ingest(m){
   if (seen.has(m.id)) return false;
   seen.add(m.id);
-  try { const d = JSON.parse(m.message); if (d && typeof d.t === 'string'){ msgs.push(d); return true; } } catch(e){}
+  try {
+    const d = JSON.parse(m.message);
+    if (d && typeof d.t === 'string'){
+      // Messages can arrive out of order (echo, live feed, re-poll), so keep the log in relay-time order.
+      d.at = m.time || 0;
+      let i = msgs.length;
+      while (i > 0 && msgs[i-1].at > d.at) i--;
+      msgs.splice(i, 0, d);
+      return true;
+    }
+  } catch(e){}
   return false;
 }
 function subscribe(code, sinceId){
@@ -203,7 +311,11 @@ function subscribe(code, sinceId){
   es = new EventSource(RELAY + PREFIX + code + '/sse' + (sinceId ? '?since=' + encodeURIComponent(sinceId) : '?since=all'));
   es.onmessage = ev => { try { const m = JSON.parse(ev.data); if (m.event === 'message' && ingest(m)) update(); } catch(e){} };
   es.onerror = () => { $('offline').hidden = false; };
-  es.onopen = () => { $('offline').hidden = true; };
+  es.onopen = () => {
+    $('offline').hidden = true;
+    // Catch anything published while the feed was connecting (or offline) that its replay missed.
+    pollAll(code).then(ms => { if (session && session.code === code && ms.map(ingest).some(Boolean)) update(); }).catch(() => {});
+  };
 }
 
 // ---- state from the message log ----
@@ -241,13 +353,12 @@ async function aesFor(priv, pubB64){
   return crypto.subtle.deriveKey({name:'ECDH', public: pub}, priv, {name:'AES-GCM', length:256}, false, ['encrypt','decrypt']);
 }
 
-function renderList(ul, list, gotSet){
+function renderList(ul, list){
   ul.replaceChildren(...list.map(p => {
     const li = document.createElement('li');
-    const nm = document.createElement('span'); nm.className = 'nm'; nm.textContent = p.name + (p.me ? ' (you)' : '');
-    const tags = document.createElement('span'); tags.className = 'row'; tags.style.gap = '6px'; tags.style.flexWrap = 'nowrap';
+    const nm = document.createElement('span'); nm.className = 'nm'; nm.dir = 'auto'; nm.textContent = p.name + (p.me ? ' (you)' : '');
+    const tags = document.createElement('span'); tags.className = 'tags';
     if (p.host){ const t = document.createElement('span'); t.className = 'tag host'; t.textContent = 'Host'; tags.append(t); }
-    if (gotSet){ const ok = gotSet.has(p.pid); const t = document.createElement('span'); t.className = 'tag' + (ok ? ' ok' : ''); t.textContent = ok ? 'Received' : 'Waiting'; tags.append(t); }
     li.append(nm, tags);
     return li;
   }));
@@ -274,102 +385,187 @@ async function update(){
       if (!st.got.has(pid) && !session.sentGot){ session.sentGot = true; publish(session.code, {t:'got', pid, game: st.start.game}).catch(() => { session.sentGot = false; }); }
       showTarget(saved.target, isHost);
       if (isHost){
-        const inGame = st.start.pids.map(id => st.list.find(p => p.pid === id) || {pid:id, name:'?', host:false, me:false}).filter(Boolean);
-        $('delivered').textContent = st.got.size + ' / ' + st.start.pids.length;
-        renderList($('host-players'), inGame, st.got);
+        const inGame = st.start.pids.map(id => st.list.find(p => p.pid === id) || {pid:id, name:'Unknown player', host:false, me:false}).filter(Boolean);
+        const received = inGame.filter(p => st.got.has(p.pid)).length;
+        setText($('delivered'), received === inGame.length ? 'All ' + received : received + ' of ' + inGame.length);
+        renderRoster($('host-roster'), inGame, st.got);
       }
       return;
     }
     show('lobby'); renderLobby(st, isHost);
     err('lobby-err', box ? 'Could not open your target on this device. Rejoin from the phone you joined with.' : 'This game already started without you. Ask the host to make a new room.');
-    $('host-controls').hidden = true; $('wait-msg').hidden = true;
+    $('host-controls').hidden = true; setText($('lobby-status'), 'Game already started.');
     return;
   }
   show('lobby'); renderLobby(st, isHost);
 }
 
 function renderLobby(st, isHost){
-  $('lobby-code').textContent = session.code.toUpperCase();
-  $('lobby-count').textContent = st.list.length + ' / 20';
-  renderList($('players'), st.list, null);
+  const n = st.list.length;
+  setText($('lobby-code'), session.code.toUpperCase());
+  $('btn-copy').hidden = !st.hostPid;
+  setText($('lobby-count'), n + ' joined · 20 max');
+  renderList($('players'), st.list);
   $('host-controls').hidden = !isHost;
-  $('wait-msg').hidden = isHost || !st.hostPid;
   if (!isHost && !st.hostPid) err('lobby-err', 'No room with that code yet. Double-check it with whoever created it.');
   else err('lobby-err', '');
+  let status = st.hostPid ? 'Waiting for the host to start the game.' : 'No host yet.';
   if (isHost){
     const names = st.list.map(p => p.name.trim().toLowerCase());
-    const dup = names.find((n,i) => names.indexOf(n) !== i);
-    const n = st.list.length;
-    $('start-hint').textContent = n < 3 ? 'Need at least 3 players.' : n > 20 ? 'Too many players. The max is 20.'
+    const dup = names.find((x,i) => names.indexOf(x) !== i);
+    status = n < 3 ? 'Need at least 3 players to start.' : n > 20 ? 'Too many players. The max is 20.'
       : dup ? 'Two players share the name "' + dup + '". One should leave and rejoin with a different name.'
       : n + ' players ready. Starting locks the room.';
     $('btn-start').disabled = busy || n < 3 || n > 20 || !!dup;
   }
+  setText($('lobby-status'), status);
 }
 
-function showTarget(name, isHost){
-  show('target');
-  $('t-me').textContent = session.name;
-  $('t-room').textContent = session.code.toUpperCase();
-  const r = $('reveal'); r.dataset.name = name;
-  if (r.dataset.open === '1') $('tname').textContent = name;
-  $('host-status').hidden = !isHost;
+let targetName = '', revealed = false, revealTimer = null;
+// Host roster: who still needs to open the page comes first, since that's who the host is chasing.
+function renderRoster(el, list, got){
+  const groups = [];
+  for (const [label, cls, items] of [['Waiting', 'waiting', list.filter(p => !got.has(p.pid))], ['Received', 'received', list.filter(p => got.has(p.pid))]]){
+    if (!items.length) continue;
+    const g = document.createElement('div'); g.className = 'roster-group ' + cls;
+    const h = document.createElement('h3'); h.textContent = label + ' · ' + items.length;
+    const ul = document.createElement('ul'); ul.className = 'players';
+    renderList(ul, items);
+    g.append(h, ul); groups.push(g);
+  }
+  el.replaceChildren(...groups);
 }
-function hideName(){ $('tname').innerHTML = '<span class="redacted">XXXXXXXX</span>'; $('thint').textContent = "Tap to reveal. Check nobody's looking."; }
-$('reveal').addEventListener('click', () => {
-  const r = $('reveal'); const open = r.dataset.open !== '1'; r.dataset.open = open ? '1' : '0';
-  if (open){ $('tname').textContent = r.dataset.name || ''; $('thint').textContent = 'Tap to hide.'; } else hideName();
+
+// The host shows their board to friends, so their own dossier stays sealed behind a row they open themselves.
+let isHostView = false, yoursOpen = false, yoursTimer = null;
+function setYours(open){
+  clearTimeout(yoursTimer);
+  yoursOpen = open;
+  if (!open && revealed) setReveal(false);
+  const hadFocus = $('dossier').contains(document.activeElement);
+  $('dossier').hidden = isHostView && !open;
+  if (hadFocus && $('dossier').hidden) $('yours-toggle').focus();
+  $('yours-toggle').setAttribute('aria-expanded', open ? 'true' : 'false');
+  $('yours-state').textContent = open ? 'Close' : 'Open';
+  if (open && isHostView) yoursTimer = setTimeout(() => setYours(false), 30000);
+}
+function showTarget(name, isHost){
+  setText($('t-me'), session.name);
+  setText($('t-room'), session.code.toUpperCase());
+  setText($('leave-code'), session.code.toUpperCase());
+  targetName = name;
+  $('host-status').hidden = !isHost;
+  $('yours-toggle').hidden = !isHost;
+  if (isHost !== isHostView){ isHostView = isHost; setYours(false); }
+  show('target');
+}
+function hideName(){
+  $('tname').innerHTML = '<span class="redacted" aria-hidden="true">XXXXXXXX</span>';
+  $('thint').textContent = "Hold to peek, or tap for 5 seconds. Check nobody's looking.";
+  $('reveal-live').textContent = '';
+}
+// The name shows only while held, and never for more than 5 seconds at a time.
+let stampLanded = false, downAt = 0, tapShown = false;
+function setReveal(on){
+  clearTimeout(revealTimer);
+  revealed = on;
+  if (!on) tapShown = false;
+  if (on && !stampLanded){
+    stampLanded = true;
+    const stamp = document.querySelector('#dossier .stamp');
+    stamp.classList.remove('thunk'); void stamp.offsetWidth; stamp.classList.add('thunk');
+  }
+  $('reveal').setAttribute('aria-pressed', on ? 'true' : 'false');
+  if (on){
+    $('tname').textContent = targetName;
+    $('thint').textContent = 'Release to hide.';
+    $('reveal-live').textContent = 'Your target: ' + targetName;
+    revealTimer = setTimeout(() => setReveal(false), 5000);
+  } else hideName();
+}
+const revealBtn = $('reveal');
+// Hold to peek. A quick tap (or VoiceOver's double-tap) shows it for the 5 seconds instead; tapping again hides it.
+revealBtn.addEventListener('pointerdown', e => {
+  if (e.button !== 0) return;
+  if (tapShown){ setReveal(false); return; }
+  downAt = Date.now(); setReveal(true);
 });
+revealBtn.addEventListener('pointerup', () => {
+  if (revealed && downAt){
+    if (Date.now() - downAt < 300){ tapShown = true; $('thint').textContent = 'Tap to hide.'; }
+    else setReveal(false);
+  }
+  downAt = 0;
+});
+for (const ev of ['pointercancel','pointerleave']) revealBtn.addEventListener(ev, () => { if (revealed && !tapShown) setReveal(false); downAt = 0; });
+let lastKey = 0;
+revealBtn.addEventListener('keydown', e => { if (e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); lastKey = Date.now(); if (!e.repeat) setReveal(true); } });
+revealBtn.addEventListener('keyup', e => { if (e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); lastKey = Date.now(); setReveal(false); } });
+// Screen readers activate with a bare click (no pointer or key press); show for the 5 seconds.
+revealBtn.addEventListener('click', e => { if (e.detail === 0 && Date.now() - lastKey > 300) setReveal(true); });
+revealBtn.addEventListener('contextmenu', e => e.preventDefault());
+$('yours-toggle').addEventListener('click', () => setYours(!yoursOpen));
+const seal = () => { if (revealed) setReveal(false); if (isHostView && yoursOpen) setYours(false); };
+document.addEventListener('visibilitychange', () => { if (document.hidden) seal(); });
+addEventListener('pagehide', seal);
+addEventListener('blur', seal);
 
 async function enterRoom(code, name, opts = {}){
   busy = true;
+  let ok = false;
   try {
     msgs = []; seen = new Set();
     const existing = await pollAll(code);
     existing.forEach(ingest);
     if (opts.create && msgs.length){ busy = false; return 'taken'; }
-    if (!opts.create && !opts.resume && !msgs.some(m => m.t === 'create')){ err('home-err', 'No room with that code. Check the letters and try again.'); busy = false; return; }
+    if (!opts.create && !opts.resume && !msgs.some(m => m.t === 'create')){ homeErr('No room with that code. Check the letters and try again.', $('code')); busy = false; return; }
     myKey = await getKeys(code);
     session = {code, name};
     LS.set('sa.session', session);
+    // Subscribe before publishing so nothing sent from here on can fall between the poll and the live feed.
+    subscribe(code, existing.length ? existing[existing.length-1].id : null);
     if (opts.create) await publish(code, {t:'create', pid});
     const st = state();
     if (!st.list.some(p => p.pid === pid) && !st.start) await publish(code, {t:'join', pid, name, pub: myKey.pub});
-    subscribe(code, existing.length ? existing[existing.length-1].id : null);
-    update();
+    ok = true;
   } catch(e){
-    err(session ? 'lobby-err' : 'home-err', "Couldn't reach the game server. Check your connection and try again.");
+    err(session ? 'lobby-err' : 'home-err', "Couldn't connect. Check your signal and try again.");
   }
   busy = false;
+  // Render after busy clears, so Start isn't left disabled from a render that happened mid-join.
+  if (ok) update();
 }
 
 $('btn-create').addEventListener('click', async () => {
   const name = $('name').value.trim();
-  if (!name){ err('home-err', 'Enter your name first.'); return; }
-  err('home-err', '');
-  $('btn-create').disabled = true;
+  if (!name){ homeErr('Enter your name first.', $('name')); return; }
+  homeErr('');
+  $('btn-create').disabled = true; $('btn-create').textContent = 'Creating room…';
   const letters = 'ABCDEFGHJKMNPQRSTUVWXYZ';
   for (let i = 0; i < 5; i++){
     const code = Array.from(rand(4), x => letters[x % letters.length]).join('').toLowerCase();
     if (await enterRoom(code, name, {create: true}) !== 'taken') break;
   }
-  $('btn-create').disabled = false;
+  $('btn-create').disabled = false; $('btn-create').textContent = 'Create a new room';
 });
-$('btn-join').addEventListener('click', async () => {
+$('s-home').addEventListener('submit', async e => {
+  e.preventDefault();
+  if ($('btn-join').disabled || $('btn-create').disabled) return;
   const name = $('name').value.trim();
   const code = $('code').value.trim().toLowerCase();
-  if (!name){ err('home-err', 'Enter your name first.'); return; }
-  if (!/^[a-z]{4}$/.test(code)){ err('home-err', 'Room codes are 4 letters.'); return; }
-  err('home-err', '');
-  $('btn-join').disabled = true;
+  if (!name){ homeErr('Enter your name first.', $('name')); return; }
+  if (!code){ homeErr('Enter the room code, or create a new room.', $('code')); return; }
+  if (!/^[a-z]{4}$/.test(code)){ homeErr('Room codes are 4 letters.', $('code')); return; }
+  homeErr('');
+  $('btn-join').disabled = true; $('btn-join').textContent = 'Joining…';
   await enterRoom(code, name);
-  $('btn-join').disabled = false;
+  $('btn-join').disabled = false; $('btn-join').textContent = 'Join room';
 });
 
 $('btn-start').addEventListener('click', async () => {
   const st = state();
   if (st.hostPid !== pid || st.list.length < 3 || st.list.length > 20) return;
-  busy = true; $('btn-start').disabled = true;
+  busy = true; $('btn-start').disabled = true; $('btn-start').textContent = 'Sending targets…';
   try {
     // Shuffle with crypto randomness, then one loop: each player hunts the next.
     const order = st.list.slice();
@@ -391,30 +587,58 @@ $('btn-start').addEventListener('click', async () => {
     // Only sealed boxes leave this function; the pairings are never shown or stored.
     await publish(session.code, {t:'start', pid, game: randId(), hostPub, assign, pids: order.map(p => p.pid)});
   } catch(e){
-    err('lobby-err', "Couldn't send the targets. Check your connection and press Start again.");
+    err('lobby-err', "Couldn't send the targets. Check your signal and press Start again.");
   }
-  busy = false;
+  busy = false; $('btn-start').textContent = 'Start game';
   update();
 });
 
 async function leave(){
   if (session){
     const st = state();
-    if (!st.start) publish(session.code, {t:'leave', pid}).catch(()=>{});
-    LS.del('sa.target.'+session.code); LS.del('sa.key.'+session.code);
+    if (!st.start){
+      publish(session.code, {t:'leave', pid}).catch(()=>{});
+      LS.del('sa.target.'+session.code); LS.del('sa.key.'+session.code);
+    }
+    // Once the game has started, keep this phone's key and target so rejoining the same code brings the target back.
   }
   LS.del('sa.session');
   if (es){ es.close(); es = null; }
-  session = null; msgs = []; $('reveal').dataset.open = '0'; hideName();
+  session = null; msgs = []; targetName = ''; stampLanded = false; setReveal(false); isHostView = false; setYours(false); closeLeaveConfirm(false);
   err('lobby-err',''); show('home');
 }
+function openLeaveConfirm(){ $('btn-leave2').hidden = true; $('leave-confirm').hidden = false; $('leave-no').focus(); }
+function closeLeaveConfirm(refocus){ $('leave-confirm').hidden = true; $('btn-leave2').hidden = false; if (refocus) $('btn-leave2').focus(); }
 $('btn-leave').addEventListener('click', leave);
-$('btn-leave2').addEventListener('click', leave);
-$('code').addEventListener('input', e => { e.target.value = e.target.value.replace(/[^a-z]/gi,'').toUpperCase(); });
+$('btn-leave2').addEventListener('click', openLeaveConfirm);
+$('leave-no').addEventListener('click', () => closeLeaveConfirm(true));
+$('leave-yes').addEventListener('click', leave);
+$('leave-confirm').addEventListener('keydown', e => { if (e.key === 'Escape') closeLeaveConfirm(true); });
+$('code').addEventListener('input', e => { e.target.value = e.target.value.replace(/[^a-z]/gi,'').toUpperCase(); e.target.removeAttribute('aria-invalid'); });
+$('name').addEventListener('input', e => e.target.removeAttribute('aria-invalid'));
+// Enter in the name field moves on to the code when it's still empty.
+$('name').addEventListener('keydown', e => { if (e.key === 'Enter' && !$('code').value){ e.preventDefault(); $('code').focus(); } });
+
+$('btn-copy').addEventListener('click', async () => {
+  if (!session) return;
+  const url = location.href.split('#')[0] + '#' + (TEST ? 'test/' : '') + session.code.toUpperCase();
+  const btn = $('btn-copy'), field = $('invite-url');
+  try {
+    await navigator.clipboard.writeText(url);
+    btn.textContent = 'Copied';
+    setTimeout(() => { btn.textContent = 'Copy invite link'; }, 2000);
+  } catch(e){
+    field.value = url; field.hidden = false; field.focus(); field.select();
+    btn.textContent = 'Select the link below and copy it';
+  }
+});
 
 const last = LS.get('sa.session');
 if (last && last.name) $('name').value = last.name;
-if (last && last.code) enterRoom(last.code, last.name, {resume: true});
+if (LINK_CODE) $('code').value = LINK_CODE.toUpperCase();
+// A link to a different room wins over resuming the last one; the old game stays saved on this phone.
+if (last && last.code && (!LINK_CODE || LINK_CODE === last.code)) enterRoom(last.code, last.name, {resume: true});
+else if (LINK_CODE) $(last && last.name ? 'btn-join' : 'name').focus();
 })();
 
 </script>
