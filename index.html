@@ -14,7 +14,7 @@
 /* Layout: one narrow column, a single "case file" card per screen, built for a phone in one hand */
 :root{
   --bg:#eef1f4; --surface:#ffffff; --ink:#141a24; --muted:#5b6576; --line:#d5dbe3;
-  --accent:#b4232f; --accent-ink:#ffffff; --ok:#1f7a4d; --soft:#f6e3e4; --field-line:#7f8999;
+  --accent:#b4232f; --accent-ink:#ffffff; --soft:#f6e3e4; --field-line:#7f8999;
   --space-hair:4px; --space-tight:8px; --space-inline:12px; --space-stack:16px; --space-group:24px; --space-section:32px; --space-zone:48px; --tap:48px;
   --display:"Archivo Black","Arial Black",Impact,sans-serif;
   --body:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -22,10 +22,10 @@
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#0f141c; --surface:#18202b; --ink:#e8edf3; --muted:#93a0b2; --line:#2a3442;
-  --accent:#ff5a63; --accent-ink:#1a0b0c; --ok:#4fd18b; --soft:#3a1d22; --field-line:#66738a; color-scheme:dark}}
+  --accent:#ff5a63; --accent-ink:#1a0b0c; --soft:#3a1d22; --field-line:#66738a; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#0f141c; --surface:#18202b; --ink:#e8edf3; --muted:#93a0b2; --line:#2a3442;
-  --accent:#ff5a63; --accent-ink:#1a0b0c; --ok:#4fd18b; --soft:#3a1d22; --field-line:#66738a; color-scheme:dark}
+  --accent:#ff5a63; --accent-ink:#1a0b0c; --soft:#3a1d22; --field-line:#66738a; color-scheme:dark}
 html,body{min-height:100%}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:var(--space-group) var(--space-zone)}
