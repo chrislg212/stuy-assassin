@@ -1,0 +1,38 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-10-15T00:29:40.062Z",
+        "reason": "user picked the spy-app standard card on 2026-10-14, whose materials list glow edges and scanlines over Inter/Rajdhani"
+      },
+      {
+        "rule": "repeating-stripes-gradient",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-15T00:29:40.081Z",
+        "reason": "user picked the spy-app standard card on 2026-10-14, whose materials list glow edges and scanlines over Inter/Rajdhani (scanlines + hatched redaction bar)"
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-15T00:29:45.993Z",
+        "reason": "user picked the spy-app standard card on 2026-10-14, whose materials list glow edges"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "#000",
+        "createdAt": "2026-10-15T00:41:27.614Z",
+        "reason": "only used as a CSS mask value for the reticle crosshair gaps; never rendered as a color"
+      }
+    ]
+  }
+}

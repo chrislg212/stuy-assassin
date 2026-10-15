@@ -37,7 +37,9 @@ No accounts, no game server, and no trusted moderator. The host's phone shuffles
 ## Brand Commitments
 
 - The name **Stuy Town Assassin** is fixed.
-- The voice is plain and direct, with light "case file / dossier" framing (Confidential, Agent, Your target). Instructions are short and practical.
+- The voice is plain and direct, with light spy framing (Agent, Your target, mission language). Instructions are short and practical.
+- Visual stance (chosen 2026-10-14): the spy-app category standard played straight, at Valorant / Riot client polish. Dark night palette, cyan and red accents, condensed display type, a crosshair reticle. It must feel like receiving a real mission. It must never read as a hacker terminal (code rain, fake command lines), never return to the old paper-dossier look, and never get in the way of joining fast in a noisy room.
+- Keep from the original: the name and title "Stuy Town Assassin", and the redaction bar over the hidden target.
 
 ## Evidence on Hand
 
