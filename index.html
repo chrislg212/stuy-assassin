@@ -570,8 +570,20 @@ revealBtn.addEventListener('click', e => { if (e.detail === 0 && Date.now() - la
 revealBtn.addEventListener('contextmenu', e => e.preventDefault());
 $('yours-toggle').addEventListener('click', () => setYours(!yoursOpen));
 const seal = () => { if (revealed) setReveal(false); if (isHostView && yoursOpen) setYours(false); };
-document.addEventListener('visibilitychange', () => { if (document.hidden) seal(); });
+// iOS Safari kills the live feed in background tabs and restores pages from its back/forward cache with the feed dead.
+// On return, reopen a closed feed and re-poll, so the game really does reconnect on its own.
+function resume(){
+  if (!session || document.hidden) return;
+  if (!es || es.readyState === 2) subscribe(session.code);
+  else pollAll(session.code).then(ms => { if (session && ms.map(ingest).some(Boolean)) update(); }).catch(() => {});
+}
+document.addEventListener('visibilitychange', () => { if (document.hidden) seal(); else resume(); });
+addEventListener('pageshow', e => { if (e.persisted) resume(); });
+addEventListener('online', resume);
 addEventListener('pagehide', seal);
+// Mode and invite code are read once at load. Safari treats a link that only changes the #part (adding #test, or a
+// #CODE invite opened onto an already-open tab) as the same page, so reload to pick it up.
+addEventListener('hashchange', () => location.reload());
 addEventListener('blur', seal);
 
 async function enterRoom(code, name, opts = {}){
