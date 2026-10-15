@@ -1,454 +1,438 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-15T00:10:33+00:00",
+  "generatedAt": "2026-10-15T00:40:52.019301+00:00",
   "title": "Design System: Stuy Town Assassin",
   "extensions": {
     "colorMeta": {
-      "signal-red": {
+      "night-navy": {
+        "role": "neutral",
+        "displayName": "Night Navy",
+        "canonical": "oklch(15.0% 0.021 264.3)",
+        "tonalRamp": [
+          "#070b14",
+          "#20252f",
+          "#3c424d",
+          "#5b616d",
+          "#7c828f",
+          "#9ea5b3",
+          "#c2c9d7",
+          "#e7effd"
+        ]
+      },
+      "panel-navy": {
+        "role": "neutral",
+        "displayName": "Panel Navy",
+        "canonical": "oklch(19.3% 0.034 265.4)",
+        "tonalRamp": [
+          "#050a1a",
+          "#1d2536",
+          "#394255",
+          "#586175",
+          "#788298",
+          "#9ba5bb",
+          "#bec9e0",
+          "#e3efff"
+        ]
+      },
+      "raised-navy": {
+        "role": "neutral",
+        "displayName": "Raised Navy",
+        "canonical": "oklch(22.4% 0.040 264.2)",
+        "tonalRamp": [
+          "#040a1c",
+          "#1b2538",
+          "#374257",
+          "#566178",
+          "#76839b",
+          "#99a5bf",
+          "#bccae4",
+          "#e1efff"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "oklch(94.3% 0.011 243.7)",
+        "tonalRamp": [
+          "#070c10",
+          "#21262a",
+          "#3d4348",
+          "#5c6267",
+          "#7d8389",
+          "#9fa6ac",
+          "#c3cad0",
+          "#e8eff5"
+        ]
+      },
+      "muted-steel": {
+        "role": "neutral",
+        "displayName": "Muted Steel",
+        "canonical": "oklch(67.5% 0.031 254.7)",
+        "tonalRamp": [
+          "#030b18",
+          "#1b2634",
+          "#374353",
+          "#556273",
+          "#768495",
+          "#98a6b9",
+          "#bccbde",
+          "#e1f0ff"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "oklch(28.4% 0.038 261.0)",
+        "tonalRamp": [
+          "#030b1b",
+          "#1a2538",
+          "#364257",
+          "#556278",
+          "#76839a",
+          "#98a6be",
+          "#bbcae3",
+          "#e0efff"
+        ]
+      },
+      "signal-cyan": {
         "role": "primary",
-        "displayName": "Signal Red",
-        "canonical": "oklch(50.3% 0.180 22.9)",
+        "displayName": "Signal Cyan",
+        "canonical": "oklch(84.4% 0.146 209.3)",
         "tonalRamp": [
-          "#1f0001",
-          "#4e0008",
-          "#820014",
-          "#b11f2c",
-          "#d9494d",
-          "#ff6f6e",
-          "#ff9e9a",
-          "#ffd3ce"
+          "#00122b",
+          "#00324a",
+          "#00536b",
+          "#00758d",
+          "#0098b1",
+          "#00bcd6",
+          "#00e2fc",
+          "#54ffff"
         ]
       },
-      "signal-red-dark": {
+      "signal-cyan-hi": {
         "role": "primary",
-        "displayName": "Signal Red (dark theme)",
-        "canonical": "oklch(69.0% 0.200 21.0)",
+        "displayName": "Signal Cyan Hi",
+        "canonical": "oklch(89.3% 0.116 204.2)",
         "tonalRamp": [
-          "#210001",
-          "#520007",
-          "#880012",
-          "#b8002a",
-          "#e13c4b",
-          "#ff656c",
-          "#ff9798",
-          "#ffcfcd"
+          "#001321",
+          "#00323f",
+          "#00515e",
+          "#00737f",
+          "#0096a2",
+          "#26bac7",
+          "#5adfec",
+          "#84ffff"
         ]
       },
-      "on-signal": {
-        "role": "on-primary",
-        "displayName": "On Signal",
-        "canonical": "oklch(100.0% 0.000 89.9)",
+      "hot-red": {
+        "role": "secondary",
+        "displayName": "Hot Red",
+        "canonical": "oklch(65.3% 0.238 13.8)",
         "tonalRamp": [
-          "#0b0b0b",
-          "#252525",
-          "#424242",
-          "#616161",
-          "#828282",
-          "#a5a5a5",
-          "#c9c9c9",
-          "#eeeeee"
-        ]
-      },
-      "on-signal-dark": {
-        "role": "on-primary",
-        "displayName": "On Signal (dark theme)",
-        "canonical": "oklch(17.3% 0.026 15.9)",
-        "tonalRamp": [
-          "#0f0a0a",
-          "#2d2222",
-          "#4e3d3e",
-          "#705b5c",
-          "#927c7d",
-          "#b59f9f",
-          "#d7c4c4",
-          "#f9ebeb"
-        ]
-      },
-      "night-ink": {
-        "role": "neutral",
-        "displayName": "Night Ink",
-        "canonical": "oklch(21.7% 0.022 260.5)",
-        "tonalRamp": [
-          "#090b0e",
-          "#21252c",
-          "#3c424c",
-          "#5a626e",
-          "#7b8390",
-          "#9da6b3",
-          "#c2cad6",
-          "#eaeff7"
-        ]
-      },
-      "night-ink-dark": {
-        "role": "neutral",
-        "displayName": "Night Ink (dark theme)",
-        "canonical": "oklch(94.4% 0.010 252.8)",
-        "tonalRamp": [
-          "#080b0f",
-          "#22252a",
-          "#3e4247",
-          "#5d6267",
-          "#7e8388",
-          "#a1a5ab",
-          "#c5cacf",
-          "#eaeff5"
-        ]
-      },
-      "cool-paper": {
-        "role": "neutral",
-        "displayName": "Cool Paper",
-        "canonical": "oklch(95.7% 0.005 247.9)",
-        "tonalRamp": [
-          "#090b0d",
-          "#232527",
-          "#404245",
-          "#5f6164",
-          "#808385",
-          "#a2a5a8",
-          "#c6c9cc",
-          "#eceff2"
-        ]
-      },
-      "cool-paper-dark": {
-        "role": "neutral",
-        "displayName": "Cool Paper (dark theme)",
-        "canonical": "oklch(19.0% 0.018 259.7)",
-        "tonalRamp": [
-          "#070b13",
-          "#20252e",
-          "#3c424c",
-          "#5b626c",
-          "#7c838e",
-          "#9ea5b1",
-          "#c2cad5",
-          "#e7effb"
-        ]
-      },
-      "blank-sheet": {
-        "role": "neutral",
-        "displayName": "Blank Sheet",
-        "canonical": "oklch(100.0% 0.000 89.9)",
-        "tonalRamp": [
-          "#0b0b0b",
-          "#252525",
-          "#424242",
-          "#616161",
-          "#828282",
-          "#a5a5a5",
-          "#c9c9c9",
-          "#eeeeee"
-        ]
-      },
-      "blank-sheet-dark": {
-        "role": "neutral",
-        "displayName": "Blank Sheet (dark theme)",
-        "canonical": "oklch(24.1% 0.024 256.4)",
-        "tonalRamp": [
-          "#090b0f",
-          "#20252c",
-          "#3b434e",
-          "#58626f",
-          "#798391",
-          "#9ba6b4",
-          "#c1cad7",
-          "#e9eff8"
-        ]
-      },
-      "pencil-gray": {
-        "role": "neutral",
-        "displayName": "Pencil Gray",
-        "canonical": "oklch(50.4% 0.030 261.1)",
-        "tonalRamp": [
-          "#090b10",
-          "#20252e",
-          "#3a4250",
-          "#586273",
-          "#788395",
-          "#9ba6b8",
-          "#c0cada",
-          "#e8effb"
-        ]
-      },
-      "pencil-gray-dark": {
-        "role": "neutral",
-        "displayName": "Pencil Gray (dark theme)",
-        "canonical": "oklch(70.1% 0.030 256.5)",
-        "tonalRamp": [
-          "#080b10",
-          "#1f262e",
-          "#394350",
-          "#566273",
-          "#778395",
-          "#99a6b8",
-          "#bfcada",
-          "#e7effb"
-        ]
-      },
-      "rule-line": {
-        "role": "neutral",
-        "displayName": "Rule Line",
-        "canonical": "oklch(88.9% 0.013 255.5)",
-        "tonalRamp": [
-          "#080b11",
-          "#21252b",
-          "#3e4249",
-          "#5d6269",
-          "#7d838a",
-          "#a0a6ad",
-          "#c4cad2",
-          "#e9eff7"
-        ]
-      },
-      "rule-line-dark": {
-        "role": "neutral",
-        "displayName": "Rule Line (dark theme)",
-        "canonical": "oklch(32.2% 0.029 256.8)",
-        "tonalRamp": [
-          "#090b0f",
-          "#20252e",
-          "#394350",
-          "#576272",
-          "#788394",
-          "#9aa6b7",
-          "#bfcad9",
-          "#e8effa"
+          "#460000",
+          "#700000",
+          "#990017",
+          "#c30036",
+          "#ee0f56",
+          "#ff4c77",
+          "#ff779a",
+          "#ff9fbe"
         ]
       },
       "field-edge": {
         "role": "neutral",
         "displayName": "Field Edge",
-        "canonical": "oklch(62.7% 0.027 259.8)",
+        "canonical": "oklch(51.0% 0.074 224.8)",
         "tonalRamp": [
-          "#090b0f",
-          "#20252d",
-          "#3b424f",
-          "#586271",
-          "#798393",
-          "#9ba6b6",
-          "#c1cad8",
-          "#e8eff9"
+          "#000f22",
+          "#002b40",
+          "#004a5f",
+          "#296a81",
+          "#4d8ca4",
+          "#70afc8",
+          "#94d4ee",
+          "#b9faff"
         ]
       },
-      "field-edge-dark": {
+      "field-edge-hover": {
         "role": "neutral",
-        "displayName": "Field Edge (dark theme)",
-        "canonical": "oklch(55.3% 0.039 261.8)",
+        "displayName": "Field Edge Hover",
+        "canonical": "oklch(61.1% 0.087 223.3)",
         "tonalRamp": [
-          "#080b11",
-          "#1f2531",
-          "#384255",
-          "#556278",
-          "#76839a",
-          "#98a6be",
-          "#bdcae0",
-          "#e6effe"
-        ]
-      },
-      "blush-note": {
-        "role": "neutral",
-        "displayName": "Blush Note",
-        "canonical": "oklch(93.1% 0.021 13.9)",
-        "tonalRamp": [
-          "#0e0a0a",
-          "#2b2323",
-          "#4b3e3f",
-          "#6d5d5e",
-          "#8e7e7e",
-          "#b2a0a1",
-          "#d4c5c6",
-          "#f7ebec"
-        ]
-      },
-      "blush-note-dark": {
-        "role": "neutral",
-        "displayName": "Blush Note (dark theme)",
-        "canonical": "oklch(27.2% 0.046 9.5)",
-        "tonalRamp": [
-          "#11080a",
-          "#311f22",
-          "#55393d",
-          "#79575b",
-          "#9c777c",
-          "#c09a9f",
-          "#e1bfc3",
-          "#ffe8ea"
+          "#000f25",
+          "#002c43",
+          "#004b64",
+          "#116b85",
+          "#3e8ea9",
+          "#63b1cd",
+          "#87d6f3",
+          "#acfcff"
         ]
       }
     },
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "App title; steps down once inside a room."
+        "purpose": "App title on Home, with cyan glow."
+      },
+      "display-sigil": {
+        "displayName": "Display Sigil",
+        "purpose": "App title beside the 40px reticle inside a room."
+      },
+      "code-display": {
+        "displayName": "Code Display",
+        "purpose": "Lobby room code in cyan."
+      },
+      "target-name": {
+        "displayName": "Target Name",
+        "purpose": "Decrypted target name; sets the redaction bar height."
+      },
+      "code-input": {
+        "displayName": "Code Input",
+        "purpose": "Four-letter room code field."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Section headings like Host panel."
+        "purpose": "Screen headings such as Host panel."
       },
-      "title": {
-        "displayName": "Title",
-        "purpose": "The revealed target name and the host's big count."
+      "number": {
+        "displayName": "Number",
+        "purpose": "Host-board counts in cyan, tabular."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "Every button label."
+      },
+      "panel-title": {
+        "displayName": "Panel Title",
+        "purpose": "Names a panel that has no larger heading."
+      },
+      "tagline": {
+        "displayName": "Tagline",
+        "purpose": "The single red line under the Home title."
+      },
+      "signal": {
+        "displayName": "Signal",
+        "purpose": "The 'or' divider and the toggle's Open/Close state."
+      },
+      "tag": {
+        "displayName": "Tag",
+        "purpose": "The Host tag."
+      },
+      "body-large": {
+        "displayName": "Body Large",
+        "purpose": "Input text and the host-board sentence."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Instructions and confirmations."
+        "purpose": "Default text."
       },
       "body-small": {
-        "displayName": "Body small",
-        "purpose": "Helper copy, errors, Leave links."
+        "displayName": "Body Small",
+        "purpose": "Helper text, notes, errors, link buttons, definition values."
+      },
+      "hint": {
+        "displayName": "Hint",
+        "purpose": "Instruction inside the target box."
       },
       "label": {
         "displayName": "Label",
-        "purpose": "Uppercase mono labels, margin titles, group headings, kicker."
-      },
-      "code": {
-        "displayName": "Code",
-        "purpose": "The 4-letter room code."
+        "purpose": "Field labels, definition terms, roster group headings."
       }
     },
-    "shadows": [],
-    "motion": [
+    "shadows": [
       {
-        "name": "stamp-thunk",
-        "value": "0.35s ease-out (scale 1.6 to 1, opacity 0 to 1, rotate -4deg)",
-        "purpose": "The Confidential stamp lands once, on a game's first reveal; only with prefers-reduced-motion: no-preference."
+        "name": "primary-lift",
+        "value": "0 8px 24px -10px rgba(0,229,255,.6)",
+        "purpose": "Under the primary button only; removed when disabled."
+      },
+      {
+        "name": "reticle-glow",
+        "value": "0 0 28px -4px rgba(0,229,255,.45), inset 0 0 22px -6px rgba(0,229,255,.35)",
+        "purpose": "Home reticle; dropped at sigil size."
+      },
+      {
+        "name": "title-glow",
+        "value": "text-shadow: 0 0 18px rgba(0,229,255,.4)",
+        "purpose": "Home title; dropped in-room."
+      },
+      {
+        "name": "code-glow",
+        "value": "text-shadow: 0 0 22px rgba(0,229,255,.35)",
+        "purpose": "Lobby room code."
       }
     ],
-    "breakpoints": []
+    "motion": [
+      {
+        "name": "ease-lock",
+        "value": "cubic-bezier(.16,1,.3,1)",
+        "purpose": "Bracket close-in (220ms), reticle snap (260ms) and masthead resize (300ms)."
+      },
+      {
+        "name": "state-color",
+        "value": "150ms",
+        "purpose": "Button and input color/border transitions."
+      },
+      {
+        "name": "decrypt",
+        "value": "~350ms",
+        "purpose": "Left-to-right character scramble of the target name; skipped under reduced motion."
+      },
+      {
+        "name": "drain",
+        "value": "5s linear",
+        "purpose": "Cyan drain bar across the reveal window; skipped under reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "column-max",
+        "value": "440px"
+      }
+    ]
   },
   "components": [
     {
       "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "The one decisive action per sheet: Join, Start game, Leave (confirm).",
-      "html": "<button class=\"ds-btn-primary\">Start game</button>",
-      "css": ".ds-btn-primary{font:700 16px/1.5 var(--body, Archivo, system-ui, sans-serif);min-height:48px;padding:12px 16px;border-radius:4px;border:1px solid var(--accent, #b4232f);background:var(--accent, #b4232f);color:var(--accent-ink, #ffffff);cursor:pointer}.ds-btn-primary:hover{filter:brightness(1.08)}.ds-btn-primary:focus-visible{outline:3px solid var(--accent, #b4232f);outline-offset:2px;}.ds-btn-primary:disabled{opacity:.45;cursor:not-allowed}"
+      "description": "The one go action per screen: Join room, Start game.",
+      "html": "<button class=\"ds-btn-primary\">Join room</button>",
+      "css": ".ds-btn-primary{--bg:#070b14;--surface:#0d1424;--raised:#121b2e;--ink:#e6edf3;--muted:#8a98aa;--line:#1f2a3d;--cyan:#00e5ff;--cyan-hi:#6ff2ff;--on-cyan:#070b14;--red:#ff2e63;--field-line:#2f6f86;font-family:'Rajdhani','Arial Narrow',sans-serif;font-weight:700;font-size:18px;letter-spacing:.1em;text-transform:uppercase;padding:12px 16px;min-height:48px;border-radius:2px;cursor:pointer;transition:background-color .15s,border-color .15s,color .15s;background:var(--cyan);border:1px solid var(--cyan);color:var(--on-cyan);box-shadow:0 8px 24px -10px rgba(0,229,255,.6)} .ds-btn-primary:hover{background:var(--cyan-hi);border-color:var(--cyan-hi)} .ds-btn-primary:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}"
     },
     {
-      "name": "Secondary Button",
+      "name": "Alt Button",
       "kind": "button",
-      "refersTo": "button-secondary",
-      "description": "Ink-outlined companion action: Create a new room, Copy invite link, Cancel.",
-      "html": "<button class=\"ds-btn-secondary\">Copy invite link</button>",
-      "css": ".ds-btn-secondary{font:700 16px/1.5 var(--body, Archivo, system-ui, sans-serif);min-height:48px;padding:12px 16px;border-radius:4px;border:1px solid var(--ink, #141a24);background:transparent;color:var(--ink, #141a24);cursor:pointer}.ds-btn-secondary:hover{background:var(--bg, #eef1f4)}.ds-btn-secondary:focus-visible{outline:3px solid var(--accent, #b4232f);outline-offset:2px;}"
+      "refersTo": "button-alt",
+      "description": "The secondary action, outlined in red: Create a new room.",
+      "html": "<button class=\"ds-btn-alt\">Create a new room</button>",
+      "css": ".ds-btn-alt{--bg:#070b14;--surface:#0d1424;--raised:#121b2e;--ink:#e6edf3;--muted:#8a98aa;--line:#1f2a3d;--cyan:#00e5ff;--cyan-hi:#6ff2ff;--on-cyan:#070b14;--red:#ff2e63;--field-line:#2f6f86;font-family:'Rajdhani','Arial Narrow',sans-serif;font-weight:700;font-size:18px;letter-spacing:.1em;text-transform:uppercase;padding:12px 16px;min-height:48px;border-radius:2px;cursor:pointer;transition:background-color .15s,border-color .15s,color .15s;background:transparent;border:1px solid var(--red);color:var(--red)} .ds-btn-alt:hover{background:rgba(255,46,99,.1)} .ds-btn-alt:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}"
     },
     {
-      "name": "Leave Link",
+      "name": "Default Button",
       "kind": "button",
-      "refersTo": "button-link",
-      "description": "Underlined pencil-gray text button for Leave, still 48px tall, in its own leave zone.",
-      "html": "<button class=\"ds-btn-link\">Leave this game</button>",
-      "css": ".ds-btn-link{font:500 14px/1.5 var(--body, Archivo, system-ui, sans-serif);min-height:48px;padding:12px 0;border:none;background:none;color:var(--muted, #5b6576);text-decoration:underline;cursor:pointer}.ds-btn-link:hover{color:var(--ink, #141a24)}.ds-btn-link:focus-visible{outline:3px solid var(--accent, #b4232f);outline-offset:2px;}"
+      "refersTo": "button-default",
+      "description": "Neutral actions: Copy invite link, Cancel.",
+      "html": "<button class=\"ds-btn\">Copy invite link</button>",
+      "css": ".ds-btn{--bg:#070b14;--surface:#0d1424;--raised:#121b2e;--ink:#e6edf3;--muted:#8a98aa;--line:#1f2a3d;--cyan:#00e5ff;--cyan-hi:#6ff2ff;--on-cyan:#070b14;--red:#ff2e63;--field-line:#2f6f86;font-family:'Rajdhani','Arial Narrow',sans-serif;font-weight:700;font-size:18px;letter-spacing:.1em;text-transform:uppercase;padding:12px 16px;min-height:48px;border-radius:2px;cursor:pointer;transition:background-color .15s,border-color .15s,color .15s;background:transparent;border:1px solid var(--muted);color:var(--ink)} .ds-btn:hover{background:var(--raised);border-color:var(--ink)} .ds-btn:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}"
     },
     {
-      "name": "Labelled Field",
+      "name": "Danger Button",
+      "kind": "button",
+      "refersTo": "button-danger",
+      "description": "Confirmed destructive action only: Leave.",
+      "html": "<button class=\"ds-btn-danger\">Leave</button>",
+      "css": ".ds-btn-danger{--bg:#070b14;--surface:#0d1424;--raised:#121b2e;--ink:#e6edf3;--muted:#8a98aa;--line:#1f2a3d;--cyan:#00e5ff;--cyan-hi:#6ff2ff;--on-cyan:#070b14;--red:#ff2e63;--field-line:#2f6f86;font-family:'Rajdhani','Arial Narrow',sans-serif;font-weight:700;font-size:18px;letter-spacing:.1em;text-transform:uppercase;padding:12px 16px;min-height:48px;border-radius:2px;cursor:pointer;transition:background-color .15s,border-color .15s,color .15s;background:var(--red);border:1px solid var(--red);color:var(--bg)} .ds-btn-danger:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}"
+    },
+    {
+      "name": "Text Input",
       "kind": "input",
       "refersTo": "input",
-      "description": "Mono label over a recessed paper field with a 3:1 field edge and signal-red caret.",
+      "description": "Labelled field on night navy with a dimmed cyan edge.",
       "html": "<label class=\"ds-field\"><span class=\"ds-label\">Your name</span><input class=\"ds-input\" placeholder=\"e.g. Indra\"></label>",
-      "css": ".ds-field{display:flex;flex-direction:column;gap:8px}.ds-label{font:700 12px/1.5 var(--mono, 'JetBrains Mono', ui-monospace, Menlo, monospace);letter-spacing:.1em;text-transform:uppercase;color:var(--muted, #5b6576)}.ds-input{font:400 17px/1.5 var(--body, Archivo, system-ui, sans-serif);min-height:48px;padding:12px 16px;border:1px solid var(--field-line, #7f8999);border-radius:4px;background:var(--bg, #eef1f4);color:var(--ink, #141a24);caret-color:var(--accent, #b4232f)}.ds-input::placeholder{color:var(--muted, #5b6576);opacity:1}.ds-input:focus-visible{outline:3px solid var(--accent, #b4232f);outline-offset:2px;}"
+      "css": ".ds-field{--bg:#070b14;--surface:#0d1424;--raised:#121b2e;--ink:#e6edf3;--muted:#8a98aa;--line:#1f2a3d;--cyan:#00e5ff;--cyan-hi:#6ff2ff;--on-cyan:#070b14;--red:#ff2e63;--field-line:#2f6f86;display:flex;flex-direction:column;gap:8px} .ds-label{font-family:'Inter',system-ui,sans-serif;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)} .ds-input{font-family:'Inter',system-ui,sans-serif;font-size:17px;padding:12px 16px;min-height:48px;border:1px solid var(--field-line);border-radius:2px;background:var(--bg);color:var(--ink);caret-color:var(--cyan);transition:border-color .15s} .ds-input::placeholder{color:var(--muted)} .ds-input:hover{border-color:#3f8faa} .ds-input:focus-visible{border-color:var(--cyan);outline:2px solid var(--cyan);outline-offset:2px}"
     },
     {
-      "name": "Case File Sheet",
+      "name": "Room Code Input",
+      "kind": "input",
+      "refersTo": "input-code",
+      "description": "Four-letter code field, wide-tracked Rajdhani caps.",
+      "html": "<input class=\"ds-input-code\" maxlength=\"4\" placeholder=\"ABCD\">",
+      "css": ".ds-input-code{--bg:#070b14;--surface:#0d1424;--raised:#121b2e;--ink:#e6edf3;--muted:#8a98aa;--line:#1f2a3d;--cyan:#00e5ff;--cyan-hi:#6ff2ff;--on-cyan:#070b14;--red:#ff2e63;--field-line:#2f6f86;font-family:'Rajdhani','Arial Narrow',sans-serif;font-weight:700;font-size:28px;letter-spacing:.45em;text-transform:uppercase;padding:6px 16px;min-height:48px;border:1px solid var(--field-line);border-radius:2px;background:var(--bg);color:var(--ink);caret-color:var(--cyan)} .ds-input-code::placeholder{color:var(--muted)} .ds-input-code:hover{border-color:#3f8faa} .ds-input-code:focus-visible{border-color:var(--cyan);outline:2px solid var(--cyan);outline-offset:2px}"
+    },
+    {
+      "name": "Bracketed Panel",
       "kind": "card",
-      "refersTo": "case-file",
-      "description": "One per screen: blank sheet, 2px ink frame, opens with a state stamp.",
-      "html": "<section class=\"ds-sheet\"><span class=\"ds-stamp\">Standby</span><span class=\"ds-label\">Room code</span><div class=\"ds-code\">KPWX</div><p class=\"ds-body\">Share this code with the group.</p></section>",
-      "css": ".ds-sheet{display:flex;flex-direction:column;gap:16px;max-width:360px;padding:24px;background:var(--surface, #ffffff);border:2px solid var(--ink, #141a24);border-radius:4px;color:var(--ink, #141a24)}.ds-stamp{align-self:flex-start;font:400 15px/1.2 var(--display, 'Archivo Black', 'Arial Black', Impact, sans-serif);text-transform:uppercase;letter-spacing:.06em;color:var(--accent, #b4232f);border:3px solid var(--accent, #b4232f);padding:4px 12px;transform:rotate(-4deg)}.ds-label{font:700 12px/1.5 var(--mono, 'JetBrains Mono', ui-monospace, Menlo, monospace);letter-spacing:.1em;text-transform:uppercase;color:var(--muted, #5b6576)}.ds-code{font:700 40px/1.2 var(--mono, 'JetBrains Mono', ui-monospace, Menlo, monospace);letter-spacing:.25em;color:var(--accent, #b4232f)}.ds-body{margin:0;font:400 16px/1.5 var(--body, Archivo, system-ui, sans-serif);color:var(--muted, #5b6576)}"
-    },
-    {
-      "name": "State Stamp",
-      "kind": "custom",
-      "refersTo": "stamp",
-      "description": "Rotated signal-red stamp naming a sheet's state; lands with a thunk on first reveal.",
-      "html": "<span class=\"ds-stamp2\">Confidential</span>",
-      "css": ".ds-stamp2{display:inline-block;font:400 15px/1.2 var(--display, 'Archivo Black', 'Arial Black', Impact, sans-serif);text-transform:uppercase;letter-spacing:.06em;color:var(--accent, #b4232f);border:3px solid var(--accent, #b4232f);padding:4px 12px;transform:rotate(-4deg)}@media (prefers-reduced-motion:no-preference){.ds-stamp2:hover{animation:ds-thunk .35s ease-out}}@keyframes ds-thunk{from{transform:rotate(-4deg) scale(1.6);opacity:0}to{transform:rotate(-4deg) scale(1);opacity:1}}"
-    },
-    {
-      "name": "Redacted Reveal",
-      "kind": "custom",
-      "description": "Dashed 'cut here' box with a fixed-width redaction bar; hold or tap to show the name, turns solid red while showing.",
-      "html": "<button class=\"ds-reveal\" aria-pressed=\"false\"><span class=\"ds-bar\" aria-hidden=\"true\">XXXXXXXX</span><span class=\"ds-hint\">Hold to peek, or tap for 5 seconds.</span></button>",
-      "css": ".ds-reveal{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;width:100%;max-width:320px;min-height:96px;padding:24px 16px;border:1px dashed var(--muted, #5b6576);border-radius:4px;background:var(--bg, #eef1f4);color:var(--ink, #141a24);cursor:pointer;user-select:none}.ds-reveal:active{border-style:solid;border-color:var(--accent, #b4232f)}.ds-reveal:focus-visible{outline:3px solid var(--accent, #b4232f);outline-offset:2px;}.ds-bar{display:inline-block;background:var(--ink, #141a24);color:transparent;border-radius:2px;font:400 36px/1.05 var(--display, 'Archivo Black', 'Arial Black', Impact, sans-serif)}.ds-hint{font:500 13px/1.5 var(--body, Archivo, system-ui, sans-serif);color:var(--muted, #5b6576)}"
-    },
-    {
-      "name": "Dossier Metadata",
-      "kind": "custom",
-      "description": "Mono margin labels beside plain values; the system's way of stating facts.",
-      "html": "<dl class=\"ds-meta\"><dt>Agent</dt><dd>Bo</dd><dt>Room</dt><dd>KPWX</dd><dt>Status</dt><dd>Waiting for the host to start the game.</dd></dl>",
-      "css": ".ds-meta{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;margin:0;font:400 14px/1.5 var(--body, Archivo, system-ui, sans-serif);color:var(--ink, #141a24);max-width:340px}.ds-meta dt{font:700 12px/1.5 var(--mono, 'JetBrains Mono', ui-monospace, Menlo, monospace);letter-spacing:.1em;text-transform:uppercase;color:var(--muted, #5b6576);padding-top:2px}.ds-meta dd{margin:0}"
+      "refersTo": "panel",
+      "description": "Panel navy with a hairline edge and four cyan corner brackets.",
+      "html": "<div class=\"ds-panel\"><p class=\"ds-panel-text\">Share this code with the group.</p></div>",
+      "css": ".ds-panel{--bg:#070b14;--surface:#0d1424;--raised:#121b2e;--ink:#e6edf3;--muted:#8a98aa;--line:#1f2a3d;--cyan:#00e5ff;--cyan-hi:#6ff2ff;--on-cyan:#070b14;--red:#ff2e63;--field-line:#2f6f86;position:relative;background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:24px;color:var(--ink);font-family:'Inter',system-ui,sans-serif} .ds-panel::before{content:'';position:absolute;inset:-1px;pointer-events:none;--b:linear-gradient(var(--cyan),var(--cyan));background:var(--b) top left/16px 2px,var(--b) top left/2px 16px,var(--b) top right/16px 2px,var(--b) top right/2px 16px,var(--b) bottom left/16px 2px,var(--b) bottom left/2px 16px,var(--b) bottom right/16px 2px,var(--b) bottom right/2px 16px;background-repeat:no-repeat} .ds-panel-text{margin:0}"
     },
     {
       "name": "Host Tag",
       "kind": "chip",
-      "refersTo": "tag",
-      "description": "The only tag: non-interactive mono 'Host' marker in the roster.",
+      "refersTo": "tag-host",
+      "description": "Red outlined caps tag marking the host in the roster.",
       "html": "<span class=\"ds-tag\">Host</span>",
-      "css": ".ds-tag{font:400 11px/1.5 var(--mono, 'JetBrains Mono', ui-monospace, Menlo, monospace);letter-spacing:.1em;text-transform:uppercase;padding:2px 8px;border-radius:3px;border:1px solid var(--accent, #b4232f);color:var(--accent, #b4232f);white-space:nowrap}"
+      "css": ".ds-tag{--bg:#070b14;--surface:#0d1424;--raised:#121b2e;--ink:#e6edf3;--muted:#8a98aa;--line:#1f2a3d;--cyan:#00e5ff;--cyan-hi:#6ff2ff;--on-cyan:#070b14;--red:#ff2e63;--field-line:#2f6f86;font-family:'Rajdhani','Arial Narrow',sans-serif;font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:1px 8px;border-radius:2px;border:1px solid var(--red);color:var(--red)}"
+    },
+    {
+      "name": "Room Code",
+      "kind": "custom",
+      "refersTo": "code-display",
+      "description": "The lobby room code, wide-tracked cyan with a faint glow.",
+      "html": "<div class=\"ds-bigcode\">ZPVA</div>",
+      "css": ".ds-bigcode{--bg:#070b14;--surface:#0d1424;--raised:#121b2e;--ink:#e6edf3;--muted:#8a98aa;--line:#1f2a3d;--cyan:#00e5ff;--cyan-hi:#6ff2ff;--on-cyan:#070b14;--red:#ff2e63;--field-line:#2f6f86;font-family:'Rajdhani','Arial Narrow',sans-serif;font-weight:700;font-size:56px;line-height:1;letter-spacing:.32em;color:var(--cyan);text-shadow:0 0 22px rgba(0,229,255,.35)}"
+    },
+    {
+      "name": "Target Reveal",
+      "kind": "custom",
+      "refersTo": "target-reveal",
+      "description": "Signature: hold to lock on; brackets close, reticle snaps, name decrypts, 5s cyan drain. Hover shows the locked state here.",
+      "html": "<button class=\"ds-reveal\"><span class=\"ds-redacted\">XXXXXXXX</span><span class=\"ds-hint\">Hold to peek, or tap for 5 seconds.</span><span class=\"ds-drain\"></span></button>",
+      "css": ".ds-reveal{--bg:#070b14;--surface:#0d1424;--raised:#121b2e;--ink:#e6edf3;--muted:#8a98aa;--line:#1f2a3d;--cyan:#00e5ff;--cyan-hi:#6ff2ff;--on-cyan:#070b14;--red:#ff2e63;--field-line:#2f6f86;position:relative;width:100%;min-height:184px;padding:32px 16px;border:1px solid var(--line);border-radius:2px;background:var(--bg);color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;overflow:hidden;cursor:pointer;font-family:'Rajdhani','Arial Narrow',sans-serif;font-weight:700;font-size:40px} .ds-reveal::before{content:'';position:absolute;inset:10px;pointer-events:none;--b:linear-gradient(var(--cyan),var(--cyan));background:var(--b) top left/16px 2px,var(--b) top left/2px 16px,var(--b) top right/16px 2px,var(--b) top right/2px 16px,var(--b) bottom left/16px 2px,var(--b) bottom left/2px 16px,var(--b) bottom right/16px 2px,var(--b) bottom right/2px 16px;background-repeat:no-repeat;transition:inset .22s cubic-bezier(.16,1,.3,1)} .ds-reveal:hover::before{inset:calc(50% - 44px) 8%} .ds-redacted{display:inline-block;height:1em;color:transparent;border-radius:2px;background:repeating-linear-gradient(0deg,rgba(0,229,255,.34) 0 2px,rgba(0,229,255,.12) 2px 4px);box-shadow:inset 0 0 0 1px var(--cyan)} .ds-hint{font-family:'Inter',system-ui,sans-serif;font-size:13px;font-weight:500;color:var(--muted)} .ds-drain{position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--cyan);transform-origin:left;transform:scaleX(0)} .ds-reveal:hover .ds-drain{transform:scaleX(1);animation:ds-drain 5s linear forwards} @keyframes ds-drain{from{transform:scaleX(1)}to{transform:scaleX(0)}} .ds-reveal:focus-visible{outline:2px solid var(--cyan);outline-offset:3px} @media (prefers-reduced-motion:reduce){.ds-reveal::before{transition:none}.ds-reveal:hover .ds-drain{animation:none}}"
     }
   ],
   "narrative": {
-    "northStar": "The Case File",
-    "overview": "Every screen is a page in the same dossier: a sheet of paper with an ink frame, a rubber stamp in the corner, typed labels down the margin, and a redaction bar over anything secret. The tone is playful but serious. The spy-file theatre is played straight, the stamps and voice carry a wink, and the controls themselves never joke. The theatre is there to make secrecy feel real to a friend group standing in one room, each holding a phone.\n\nThe system is built for one narrow column on a phone held in one hand. Density is low and deliberate: one sheet per screen, one primary action per sheet, generous separation before anything destructive. Expression comes from the system's own few devices (stamps, frames, mono labels, redaction), never from added decoration. It is flat at rest, uses a single red, and works in light and dark from the same tokens.",
+    "northStar": "The Night Op",
+    "overview": "The phone becomes a mission terminal for exactly one secret. The system is the spy-app category standard played straight, at the polish of a competitive shooter's client: a night-navy ground under faint scanlines, hairline panels whose corners are marked by cyan brackets, condensed capitals for anything the player must read at a glance, and a crosshair reticle that opens the app full-size and shrinks to a sigil once the player is inside a room. Two signals carry all meaning: cyan says go, codes and focus; red says host, waiting and danger.\n\nDensity is low and the column is narrow (440px at most), built for one phone in one hand in a noisy room. Light is rationed: only the reticle, the home title, the room code and the primary button glow, and everything else is flat hairline on navy. The system peaks in one place, the target box, where holding closes the brackets in, snaps a reticle over the redaction bar, decrypts the name by character scramble and runs a five-second cyan drain.\n\nIt refuses the hacker console (code rain, fake command lines, monospace prompts) and the paper dossier (cream sheets, rubber stamps, typewriter labels). The hatched cyan redaction bar is the one device carried forward from the original app.",
     "keyCharacteristics": [
-      "One case-file sheet per screen, framed in 2px Night Ink with 4px corners.",
-      "A rotated Signal Red stamp names each screen's state: Recruiting, Standby, Confidential.",
-      "Typed-paperwork labels: uppercase JetBrains Mono at 12px, with 0.1em letter spacing.",
-      "Heavy uppercase Archivo Black for the title, headings and the revealed name.",
-      "Secrets are redacted by default and shown only on an explicit hold or tap.",
-      "A 4px spacing scale with a 48px minimum control height."
+      "One dark theme only (color-scheme dark); three navy steps for ground, panel and raised.",
+      "Cyan and red are signals with fixed meanings, never decoration.",
+      "Rajdhani 600/700 capitals for display, buttons, codes and numbers; Inter for every sentence.",
+      "2px corners, 1px hairlines, 16px cyan corner brackets on panels; circles only for reticles.",
+      "48px minimum touch targets throughout.",
+      "Motion lives in the lock-on; reduced motion swaps instantly."
     ],
     "rules": [
       {
-        "name": "The One Signal Rule",
-        "body": "Signal Red is the only accent. There is no second hue for success, info or decoration; status is carried by words and grouping (\"Waiting · 2\", \"Received · 6\").",
+        "name": "The Two Signals Rule",
+        "body": "Cyan means go, codes and focus; red means host, waiting and danger. A color never borrows the other's job, and neither is used as an ornament.",
         "section": "colors"
       },
       {
-        "name": "The Ink Frame Rule",
-        "body": "Dividers use Rule Line, input borders use Field Edge, and containers use Night Ink. Never swap them: a Rule Line border on a control fails contrast, and a Night Ink divider shouts.",
+        "name": "The Night Ground Rule",
+        "body": "There is one theme. Surfaces step up through night, panel and raised navy only; no light mode, no gray cards, no gradients other than the scanlines.",
         "section": "colors"
       },
       {
-        "name": "The Typed Label Rule",
-        "body": "Every label, margin title or field name is uppercase mono. Body copy is never set in mono, and mono is never a costume for \"technical\"; it marks what has been filed.",
+        "name": "The Caps Command, Inter Explains Rule",
+        "body": "Rajdhani capitals are for things you act on or read at a glance: titles, buttons, codes, counts, tags. Any full sentence is Inter in sentence case.",
         "section": "typography"
       },
       {
-        "name": "The Capitals Are Loud Rule",
-        "body": "Archivo Black appears only in capitals and only for the title, headings, stamps, the revealed name and the host count. Never use it for running text.",
+        "name": "The Wide Code Rule",
+        "body": "Room codes are always tracked wide (0.32em displayed, 0.45em in the field) so four letters can be read across a room.",
         "section": "typography"
       },
       {
-        "name": "The 48 Rule",
-        "body": "Every interactive control is at least 48px tall, links included. A small visible mark gets its tap height from padding.",
-        "section": "layout"
-      },
-      {
-        "name": "The Leave Zone Rule",
-        "body": "Leave and other irreversible actions live at the bottom, behind a 48px gap and a Rule Line divider, and confirm inline. Cancel comes first and takes focus.",
-        "section": "layout"
-      },
-      {
-        "name": "The Flat At Rest Rule",
-        "body": "Nothing casts a shadow at rest. A shadow appears only in response to state, never as decoration, never as a zero-offset glow, and never as a hard offset block.",
+        "name": "The Rationed Light Rule",
+        "body": "Glow appears only on the reticle, the Home title, the room code and the primary button. No panel, card, input or secondary button glows or casts a shadow.",
         "section": "elevation"
+      },
+      {
+        "name": "The Bracket Rule",
+        "body": "A panel is marked by its corners, not by a heavier border or a fill change. Brackets are always cyan, 16px by 2px.",
+        "section": "shapes"
       }
     ],
     "dos": [
-      "**Do** open every screen's sheet with a stamp that names its state, in Signal Red capitals rotated -4°.",
-      "**Do** set every label, margin title and group heading in uppercase JetBrains Mono at 12px with 0.1em letter spacing.",
-      "**Do** keep every control at least 48px tall, and put irreversible actions behind the 48px leave zone with an inline confirm that puts Cancel first.",
-      "**Do** show facts as dossier metadata (mono label beside a value) rather than as chips, tiles or badges.",
-      "**Do** scale display sizes, the stamp and sheet padding with `clamp()` so the column holds at 200% zoom without sideways scrolling.",
-      "**Do** keep the system flat at rest; if a state needs lift, use an offset, soft-blur shadow for that state only."
+      "**Do** keep cyan for go, codes and focus, and red for host, waiting and danger (The Two Signals Rule).",
+      "**Do** set titles, buttons, codes, counts and tags in Rajdhani 700 capitals with positive tracking, and every sentence in Inter.",
+      "**Do** give every control at least 48px of height and a 2px cyan focus outline.",
+      "**Do** mark panels with 16px cyan corner brackets over a 1px hairline on Panel Navy.",
+      "**Do** keep 2px corners on every rectangle and save circles for reticles.",
+      "**Do** keep the hatched cyan redaction bar exactly one name-line tall so revealing never shifts the layout.",
+      "**Do** honor prefers-reduced-motion with an instant swap and no scramble, snap or drain."
     ],
     "donts": [
-      "**Don't** show a target name unprompted. Redaction is the default state; a name appears only on an explicit hold or tap and seals itself again.",
-      "**Don't** introduce a second accent hue. Signal Red carries all emphasis, and status is said in words.",
-      "**Don't** use Archivo Black for running text, or mono for body copy.",
-      "**Don't** add decorative shadows, glows, gradients or rounded pill shapes.",
-      "**Don't** outline a control in Rule Line; controls use Field Edge or Night Ink."
+      "**Don't** add glow beyond the reticle, the Home title, the room code and the primary button lift (The Rationed Light Rule).",
+      "**Don't** drift toward a hacker terminal: no code rain, fake command lines or monospace prompts.",
+      "**Don't** return to the paper dossier: no cream paper, rubber stamps or typewriter labels.",
+      "**Don't** add a light theme or a fourth surface tone.",
+      "**Don't** put a small tracked caps line above a heading as decoration; a panel gets a Panel Title only when it has no other heading.",
+      "**Don't** round corners past 2px or soften panels with drop shadows.",
+      "**Don't** let decoration slow joining: the name field, the code field and Join stay in the first viewport."
     ]
   }
 }

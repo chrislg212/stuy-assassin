@@ -1,69 +1,113 @@
 ---
 name: Stuy Town Assassin
-description: A case file that deals secret targets, one phone at a time.
+description: A night mission app that deals one secret target to each phone.
 colors:
-  signal-red: "#b4232f"
-  signal-red-dark: "#ff5a63"
-  on-signal: "#ffffff"
-  on-signal-dark: "#1a0b0c"
-  night-ink: "#141a24"
-  night-ink-dark: "#e8edf3"
-  cool-paper: "#eef1f4"
-  cool-paper-dark: "#0f141c"
-  blank-sheet: "#ffffff"
-  blank-sheet-dark: "#18202b"
-  pencil-gray: "#5b6576"
-  pencil-gray-dark: "#93a0b2"
-  rule-line: "#d5dbe3"
-  rule-line-dark: "#2a3442"
-  field-edge: "#7f8999"
-  field-edge-dark: "#66738a"
-  blush-note: "#f6e3e4"
-  blush-note-dark: "#3a1d22"
+  night-navy: "#070b14"
+  panel-navy: "#0d1424"
+  raised-navy: "#121b2e"
+  ink: "#e6edf3"
+  muted-steel: "#8a98aa"
+  hairline: "#1f2a3d"
+  signal-cyan: "#00e5ff"
+  signal-cyan-hi: "#6ff2ff"
+  hot-red: "#ff2e63"
+  field-edge: "#2f6f86"
+  field-edge-hover: "#3f8faa"
 typography:
   display:
-    fontFamily: "Archivo Black, Arial Black, Impact, sans-serif"
-    fontSize: "clamp(26px, 10vw, 46px)"
-    fontWeight: 400
-    lineHeight: 0.95
-    letterSpacing: "-0.01em"
+    fontFamily: "Rajdhani, Arial Narrow, Helvetica Neue, sans-serif"
+    fontSize: "clamp(30px, 11.5vw, 48px)"
+    fontWeight: 700
+    lineHeight: 0.92
+    letterSpacing: "0.06em"
+  display-sigil:
+    fontFamily: "Rajdhani, Arial Narrow, Helvetica Neue, sans-serif"
+    fontSize: "clamp(20px, 6.4vw, 26px)"
+    fontWeight: 700
+    lineHeight: 0.92
+    letterSpacing: "0.06em"
+  code-display:
+    fontFamily: "Rajdhani, Arial Narrow, Helvetica Neue, sans-serif"
+    fontSize: "clamp(36px, 15vw, 64px)"
+    fontWeight: 700
+    lineHeight: 1
+    letterSpacing: "0.32em"
+  target-name:
+    fontFamily: "Rajdhani, Arial Narrow, Helvetica Neue, sans-serif"
+    fontSize: "clamp(30px, 10vw, 46px)"
+    fontWeight: 700
+    lineHeight: 1
+    letterSpacing: "0.06em"
+  code-input:
+    fontFamily: "Rajdhani, Arial Narrow, Helvetica Neue, sans-serif"
+    fontSize: "28px"
+    fontWeight: 700
+    letterSpacing: "0.45em"
   headline:
-    fontFamily: "Archivo Black, Arial Black, Impact, sans-serif"
+    fontFamily: "Rajdhani, Arial Narrow, Helvetica Neue, sans-serif"
+    fontSize: "24px"
+    fontWeight: 700
+    lineHeight: 1.1
+    letterSpacing: "0.08em"
+  number:
+    fontFamily: "Rajdhani, Arial Narrow, Helvetica Neue, sans-serif"
     fontSize: "22px"
+    fontWeight: 700
+    letterSpacing: "0.06em"
+    fontFeature: "tnum"
+  button:
+    fontFamily: "Rajdhani, Arial Narrow, Helvetica Neue, sans-serif"
+    fontSize: "18px"
+    fontWeight: 700
+    letterSpacing: "0.1em"
+  panel-title:
+    fontFamily: "Rajdhani, Arial Narrow, Helvetica Neue, sans-serif"
+    fontSize: "15px"
+    fontWeight: 700
+    letterSpacing: "0.2em"
+  tagline:
+    fontFamily: "Rajdhani, Arial Narrow, Helvetica Neue, sans-serif"
+    fontSize: "clamp(11px, 3.4vw, 14px)"
+    fontWeight: 600
+    letterSpacing: "0.16em"
+  signal:
+    fontFamily: "Rajdhani, Arial Narrow, Helvetica Neue, sans-serif"
+    fontSize: "13px"
+    fontWeight: 700
+    letterSpacing: "0.24em"
+  tag:
+    fontFamily: "Rajdhani, Arial Narrow, Helvetica Neue, sans-serif"
+    fontSize: "12px"
+    fontWeight: 700
+    letterSpacing: "0.16em"
+  body-large:
+    fontFamily: "Inter, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontSize: "17px"
     fontWeight: 400
-    lineHeight: 1.2
-    letterSpacing: "0.01em"
-  title:
-    fontFamily: "Archivo Black, Arial Black, Impact, sans-serif"
-    fontSize: "clamp(22px, 9vw, 40px)"
-    fontWeight: 400
-    lineHeight: 1.05
+    lineHeight: 1.5
   body:
-    fontFamily: "Archivo, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontFamily: "Inter, system-ui, -apple-system, Segoe UI, sans-serif"
     fontSize: "16px"
     fontWeight: 400
     lineHeight: 1.5
   body-small:
-    fontFamily: "Archivo, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontFamily: "Inter, system-ui, -apple-system, Segoe UI, sans-serif"
     fontSize: "14px"
     fontWeight: 400
     lineHeight: 1.5
-  label:
-    fontFamily: "JetBrains Mono, ui-monospace, Menlo, Consolas, monospace"
-    fontSize: "12px"
-    fontWeight: 700
+  hint:
+    fontFamily: "Inter, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontSize: "13px"
+    fontWeight: 500
     lineHeight: 1.5
-    letterSpacing: "0.1em"
-  code:
-    fontFamily: "JetBrains Mono, ui-monospace, Menlo, Consolas, monospace"
-    fontSize: "clamp(28px, 10vw, 40px)"
-    fontWeight: 700
-    lineHeight: 1.2
-    letterSpacing: "0.25em"
+  label:
+    fontFamily: "Inter, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontSize: "12px"
+    fontWeight: 600
+    letterSpacing: "0.14em"
 rounded:
-  hair: "2px"
-  tag: "3px"
-  sheet: "4px"
+  sm: "2px"
+  full: "50%"
 spacing:
   hair: "4px"
   tight: "8px"
@@ -72,205 +116,241 @@ spacing:
   group: "24px"
   section: "32px"
   zone: "48px"
+  tap: "48px"
 components:
   button-primary:
-    backgroundColor: "{colors.signal-red}"
-    textColor: "{colors.on-signal}"
-    rounded: "{rounded.sheet}"
+    backgroundColor: "{colors.signal-cyan}"
+    textColor: "{colors.night-navy}"
+    typography: "{typography.button}"
+    rounded: "{rounded.sm}"
     padding: "12px 16px"
     height: "48px"
-  button-secondary:
-    backgroundColor: "{colors.blank-sheet}"
-    textColor: "{colors.night-ink}"
-    rounded: "{rounded.sheet}"
+  button-primary-hover:
+    backgroundColor: "{colors.signal-cyan-hi}"
+    textColor: "{colors.night-navy}"
+  button-alt:
+    backgroundColor: "transparent"
+    textColor: "{colors.hot-red}"
+    typography: "{typography.button}"
+    rounded: "{rounded.sm}"
     padding: "12px 16px"
     height: "48px"
-  button-link:
-    textColor: "{colors.pencil-gray}"
-    typography: "{typography.body-small}"
-    padding: "12px 0"
+  button-default:
+    backgroundColor: "transparent"
+    textColor: "{colors.ink}"
+    typography: "{typography.button}"
+    rounded: "{rounded.sm}"
+    padding: "12px 16px"
+    height: "48px"
+  button-default-hover:
+    backgroundColor: "{colors.raised-navy}"
+    textColor: "{colors.ink}"
+  button-danger:
+    backgroundColor: "{colors.hot-red}"
+    textColor: "{colors.night-navy}"
+    typography: "{typography.button}"
+    rounded: "{rounded.sm}"
+    padding: "12px 16px"
     height: "48px"
   input:
-    backgroundColor: "{colors.cool-paper}"
-    textColor: "{colors.night-ink}"
-    rounded: "{rounded.sheet}"
+    backgroundColor: "{colors.night-navy}"
+    textColor: "{colors.ink}"
+    typography: "{typography.body-large}"
+    rounded: "{rounded.sm}"
     padding: "12px 16px"
     height: "48px"
-  case-file:
-    backgroundColor: "{colors.blank-sheet}"
-    textColor: "{colors.night-ink}"
-    rounded: "{rounded.sheet}"
-    padding: "24px"
-  stamp:
-    textColor: "{colors.signal-red}"
-    padding: "4px 12px"
-  tag:
-    textColor: "{colors.pencil-gray}"
-    typography: "{typography.label}"
-    rounded: "{rounded.tag}"
-    padding: "2px 8px"
-  note:
-    backgroundColor: "{colors.blush-note}"
-    textColor: "{colors.night-ink}"
-    typography: "{typography.body-small}"
-    rounded: "{rounded.sheet}"
-    padding: "8px 12px"
+  input-code:
+    backgroundColor: "{colors.night-navy}"
+    textColor: "{colors.ink}"
+    typography: "{typography.code-input}"
+    rounded: "{rounded.sm}"
+    padding: "6px 16px"
+    height: "48px"
+  panel:
+    backgroundColor: "{colors.panel-navy}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.sm}"
+    padding: "clamp(16px, 6vw, 24px)"
+  tag-host:
+    backgroundColor: "transparent"
+    textColor: "{colors.hot-red}"
+    typography: "{typography.tag}"
+    rounded: "{rounded.sm}"
+    padding: "1px 8px"
+  target-reveal:
+    backgroundColor: "{colors.night-navy}"
+    textColor: "{colors.ink}"
+    typography: "{typography.target-name}"
+    rounded: "{rounded.sm}"
+    padding: "32px 16px"
+    height: "184px"
 ---
 
 # Design System: Stuy Town Assassin
 
 ## Overview
 
-**Creative North Star: "The Case File"**
+**Creative North Star: "The Night Op"**
 
-Every screen is a page in the same dossier: a sheet of paper with an ink frame, a rubber stamp in the corner, typed labels down the margin, and a redaction bar over anything secret. The tone is playful but serious. The spy-file theatre is played straight, the stamps and voice carry a wink, and the controls themselves never joke. The theatre is there to make secrecy feel real to a friend group standing in one room, each holding a phone.
+The phone becomes a mission terminal for exactly one secret. The system is the spy-app category standard played straight, at the polish of a competitive shooter's client: a night-navy ground under faint scanlines, hairline panels whose corners are marked by cyan brackets, condensed capitals for anything the player must read at a glance, and a crosshair reticle that opens the app full-size and shrinks to a sigil once the player is inside a room. Two signals carry all meaning: cyan says go, codes and focus; red says host, waiting and danger.
 
-The system is built for one narrow column on a phone held in one hand. Density is low and deliberate: one sheet per screen, one primary action per sheet, generous separation before anything destructive. Expression comes from the system's own few devices (stamps, frames, mono labels, redaction), never from added decoration. It is flat at rest, uses a single red, and works in light and dark from the same tokens.
+Density is low and the column is narrow (440px at most), built for one phone in one hand in a noisy room. Light is rationed: only the reticle, the home title, the room code and the primary button glow, and everything else is flat hairline on navy. The system peaks in one place, the target box, where holding closes the brackets in, snaps a reticle over the redaction bar, decrypts the name by character scramble and runs a five-second cyan drain.
+
+It refuses the hacker console (code rain, fake command lines, monospace prompts) and the paper dossier (cream sheets, rubber stamps, typewriter labels). The hatched cyan redaction bar is the one device carried forward from the original app.
 
 **Key Characteristics:**
-- One case-file sheet per screen, framed in 2px Night Ink with 4px corners.
-- A rotated Signal Red stamp names each screen's state: Recruiting, Standby, Confidential.
-- Typed-paperwork labels: uppercase JetBrains Mono at 12px, with 0.1em letter spacing.
-- Heavy uppercase Archivo Black for the title, headings and the revealed name.
-- Secrets are redacted by default and shown only on an explicit hold or tap.
-- A 4px spacing scale with a 48px minimum control height.
+- One dark theme only (color-scheme dark); three navy steps for ground, panel and raised.
+- Cyan and red are signals with fixed meanings, never decoration.
+- Rajdhani 600/700 capitals for display, buttons, codes and numbers; Inter for every sentence.
+- 2px corners, 1px hairlines, 16px cyan corner brackets on panels; circles only for reticles.
+- 48px minimum touch targets throughout.
+- Motion lives in the lock-on; reduced motion swaps instantly.
 
 ## Colors
 
-The palette is cool paper and night ink with a single signal red, and every role has a light and a dark value.
+A night-op palette: near-black navy layered in three close steps, cool steel neutrals, and two saturated signals that never trade jobs.
 
 ### Primary
-- **Signal Red** (light `signal-red` / dark `signal-red-dark`): the only accent. It is used for the primary action (Join, Start, Leave), the stamps, the room code, the title kicker, focus rings, text selection, the caret and error text. It means "this matters now". On a red fill, text uses **On Signal** (white in light mode, near-black in dark mode).
+- **Signal Cyan** (#00e5ff): the primary action fill (Join room, Start game), the room code, numbers on the host board, corner brackets, the reticle, the redaction bar, the drain bar, the text caret, selection and every focus ring. 12.8:1 on the ground.
+- **Signal Cyan Hi** (#6ff2ff): hover fill for the primary button only.
+
+### Secondary
+- **Hot Red** (#ff2e63): the secondary action outline (Create a new room), the Host tag, the "waiting" roster heading, the target toggle row, the tagline, errors, notes (as a 45% edge and 8% tint) and the destructive Leave fill. 5.5:1 on the ground; dark navy text on its fill.
 
 ### Neutral
-- **Night Ink** (`night-ink` / `night-ink-dark`): body text, and the 2px frame around every case-file sheet and the host's "Your target" row.
-- **Cool Paper** (`cool-paper` / `cool-paper-dark`): the page background, and the fill of inputs and the reveal box, so typed and secret content sits slightly recessed in the sheet.
-- **Blank Sheet** (`blank-sheet` / `blank-sheet-dark`): the surface of case-file sheets.
-- **Pencil Gray** (`pencil-gray` / `pencil-gray-dark`): secondary text, mono labels, hints and the Leave links. It passes 4.5:1 on every surface it sits on.
-- **Rule Line** (`rule-line` / `rule-line-dark`): dividers and roster rules only. It is never used to outline an interactive control.
-- **Field Edge** (`field-edge` / `field-edge-dark`): input borders, at 3:1 or better against the sheet in both themes.
-- **Blush Note** (`blush-note` / `blush-note-dark`): the background of system notes (test mode, lost connection).
+- **Night Navy** (#070b14): the page ground, the inside of inputs and the target box, and the text color on cyan and red fills.
+- **Panel Navy** (#0d1424): bracketed panels and the target toggle row.
+- **Raised Navy** (#121b2e): hover fill for default and toggle buttons.
+- **Ink** (#e6edf3): all primary text. 16.7:1 on the ground.
+- **Muted Steel** (#8a98aa): labels, helper text, placeholders, received names, the "or" divider, link buttons, default button edges. 6.7:1 on the ground.
+- **Hairline** (#1f2a3d): panel edges, list rules, divider lines, the leave-zone rule.
+- **Field Edge** (#2f6f86): input borders at rest, a dimmed cyan so fields read as part of the signal family. 3.5:1 on the ground, above the 3:1 non-text floor.
+- **Field Edge Hover** (#3f8faa): input border on hover, between rest and the full cyan of focus.
 
 ### Named Rules
-**The One Signal Rule.** Signal Red is the only accent. There is no second hue for success, info or decoration; status is carried by words and grouping ("Waiting · 2", "Received · 6").
+**The Two Signals Rule.** Cyan means go, codes and focus; red means host, waiting and danger. A color never borrows the other's job, and neither is used as an ornament.
 
-**The Ink Frame Rule.** Dividers use Rule Line, input borders use Field Edge, and containers use Night Ink. Never swap them: a Rule Line border on a control fails contrast, and a Night Ink divider shouts.
+**The Night Ground Rule.** There is one theme. Surfaces step up through night, panel and raised navy only; no light mode, no gray cards, no gradients other than the scanlines.
 
 ## Typography
 
-**Display Font:** Archivo Black (fallback: Arial Black, Impact, sans-serif)
-**Body Font:** Archivo (fallback: system-ui, -apple-system, Segoe UI, sans-serif)
-**Label/Mono Font:** JetBrains Mono (fallback: ui-monospace, Menlo, Consolas, monospace)
+**Display Font:** Rajdhani (with Arial Narrow, Helvetica Neue, sans-serif)
+**Body Font:** Inter (with system-ui, -apple-system, Segoe UI, sans-serif)
 
-**Character:** a heavy grotesque in capitals does the shouting, a plain sans carries the instructions, and a typewriter-style mono files everything under labels. Together they read as a stamped, typed document.
+**Character:** Rajdhani's squared, condensed capitals give the game-client voice to titles, buttons, codes and counts; Inter keeps every instruction calm and legible at phone sizes. Both faces load without blocking first paint.
 
 ### Hierarchy
-- **Display** (Archivo Black, `clamp(26px, 10vw, 46px)`, line height 0.95, uppercase, balanced wrapping): the app title. It steps down to `clamp(22px, 7.5vw, 28px)` once the player is in a room, so the room and the target lead.
-- **Headline** (Archivo Black, 22px, uppercase): section headings such as "Host panel".
-- **Title** (Archivo Black, `clamp(22px, 9vw, 40px)`, line height 1.05, uppercase): the revealed target name and the host's big count ("6 of 8"). These are the moments the eye must land on.
-- **Body** (Archivo 400, 16px, line height 1.5): instructions and confirmations. Inputs use 17px so iOS doesn't zoom on focus.
-- **Body small** (Archivo 400, 14px): helper copy, errors (500 weight) and the Leave links (500, underlined).
-- **Label** (JetBrains Mono 700, 12px, 0.1em letter spacing, uppercase): field labels, the dossier's margin labels (Agent, Room, Rule, Saved), roster group headings and the title kicker.
-- **Code** (JetBrains Mono 700, `clamp(28px, 10vw, 40px)`, 0.25em letter spacing, Signal Red): the 4-letter room code.
+- **Display** (700, clamp 30-48px, 0.92, 0.06em caps): the app title on Home, with a faint cyan glow.
+- **Display Sigil** (700, clamp 20-26px, 0.06em caps): the same title inside a room, beside the 40px reticle, without glow.
+- **Code Display** (700, clamp 36-64px, 1, 0.32em): the room code in the lobby, in cyan with glow.
+- **Target Name** (700, clamp 30-46px, 1, 0.06em caps): the decrypted target name, and the height of the redaction bar.
+- **Code Input** (700, 28px, 0.45em caps): the four-letter room code field.
+- **Headline** (700, 24px, 1.1, 0.08em caps): screen headings such as Host panel.
+- **Number** (700, 22px, 0.06em, tabular): host-board counts, in cyan.
+- **Button** (700, 18px, 0.1em caps): every button label.
+- **Panel Title** (700, 15px, 0.2em caps): the heading that names a panel when no larger heading exists, as on the target panel.
+- **Tagline** (600, clamp 11-14px, 0.16em caps): the single red line under the Home title.
+- **Signal** (700, 13px, 0.2-0.24em caps): the "or" divider and the Open/Close state on the target toggle.
+- **Tag** (700, 12px, 0.16em caps): the Host tag.
+- **Body Large** (Inter 400, 17px, 1.5): input text and the host-board sentence.
+- **Body** (Inter 400, 16px, 1.5): default text.
+- **Body Small** (Inter 400, 14px, 1.5): helper paragraphs, notes, errors, link buttons, definition values.
+- **Hint** (Inter 500, 13px): the instruction inside the target box.
+- **Label** (Inter 600, 12px, 0.14em caps, muted): field labels, definition terms and roster group headings.
 
 ### Named Rules
-**The Typed Label Rule.** Every label, margin title or field name is uppercase mono. Body copy is never set in mono, and mono is never a costume for "technical"; it marks what has been filed.
+**The Caps Command, Inter Explains Rule.** Rajdhani capitals are for things you act on or read at a glance: titles, buttons, codes, counts, tags. Any full sentence is Inter in sentence case.
 
-**The Capitals Are Loud Rule.** Archivo Black appears only in capitals and only for the title, headings, stamps, the revealed name and the host count. Never use it for running text.
+**The Wide Code Rule.** Room codes are always tracked wide (0.32em displayed, 0.45em in the field) so four letters can be read across a room.
 
 ## Layout
 
-The page is a single centered column, at most 460px wide, with side gutters of at least 16px that respect safe-area insets. The header sits above `<main>`; each screen is one case-file sheet inside it. There are no breakpoints. Display sizes, the stamp and sheet padding scale with `clamp()`, so the layout holds without sideways scrolling from 195px (200% zoom on a phone) up to desktop, where the column simply floats in the center.
+A single centered column, at most 440px, with 16px side gutters that grow with the safe-area insets; 32px top and 48px bottom padding. Screens stack their blocks with 24px gaps; inside panels the rhythm is 16px between fields and 8px between a label and its control. The spacing scale is 4, 8, 12, 16, 24, 32 and 48px, used by name (hair, tight, inline, stack, group, section, zone). Panel padding is fluid, clamp(16px, 6vw, 24px). Rows of buttons wrap with a 120px minimum per button. The leave action always sits apart from the main flow, below a hairline rule and at least 16px away.
 
-Rhythm runs on a 4px scale: hair 4, tight 8, inline 12, stack 16, group 24, section 32, zone 48. Use tight steps inside a group and generous steps between groups. On the Target screen, regions separate at the section step (32px). Anything destructive sits behind the zone step (48px) and a Rule Line divider.
-
-Reading order follows the task:
-- **Home:** fields first, then Join, then Create.
-- **Lobby:** the code and the invite link, then status, then Start, then the roster, which comes last because it grows.
-- **Target for the host:** the shareable board first, with their own dossier sealed below it.
-
-### Named Rules
-**The 48 Rule.** Every interactive control is at least 48px tall, links included. A small visible mark gets its tap height from padding.
-
-**The Leave Zone Rule.** Leave and other irreversible actions live at the bottom, behind a 48px gap and a Rule Line divider, and confirm inline. Cancel comes first and takes focus.
+On Home the masthead is a stacked, centered reticle (clamp 120-180px), title and tagline; on Lobby and Target it collapses to a single row with a 40px reticle and the smaller title, and the tagline is hidden so the room and the target lead.
 
 ## Elevation & Depth
 
-The system is flat. Depth comes from frame weight (a 2px Night Ink sheet against 1px Rule Line dividers) and from paper tone (a Blank Sheet surface on a Cool Paper ground, with recessed Cool Paper fields). No shadows exist today. A shadow may be introduced only to express a state, such as a pressed or lifted control, and it must have a real offset and a soft blur.
+Depth is tonal, not shadowed: three navy steps, 1px hairlines and corner brackets do the layering. Light replaces shadow in four sanctioned places only, all cyan and all part of the chosen world (recorded as detector exceptions in `.impeccable/config.json`). Faint horizontal scanlines (1px at 1.8% white every 4px) sit over the whole ground.
+
+### Shadow Vocabulary
+- **Primary lift** (`box-shadow: 0 8px 24px -10px rgba(0,229,255,.6)`): under the primary button only; removed when disabled.
+- **Reticle glow** (`box-shadow: 0 0 28px -4px rgba(0,229,255,.45), inset 0 0 22px -6px rgba(0,229,255,.35)`): the Home reticle; dropped at sigil size.
+- **Title glow** (`text-shadow: 0 0 18px rgba(0,229,255,.4)`): the Home title; dropped in-room.
+- **Code glow** (`text-shadow: 0 0 22px rgba(0,229,255,.35)`): the lobby room code.
 
 ### Named Rules
-**The Flat At Rest Rule.** Nothing casts a shadow at rest. A shadow appears only in response to state, never as decoration, never as a zero-offset glow, and never as a hard offset block.
+**The Rationed Light Rule.** Glow appears only on the reticle, the Home title, the room code and the primary button. No panel, card, input or secondary button glows or casts a shadow.
 
 ## Shapes
 
-Corners are barely softened: 4px on sheets, buttons, inputs and the reveal box; 3px on tags; 2px on the redaction bar. Nothing is pill-shaped or circular. Frames are solid lines in Night Ink. The reveal box is the one dashed border in the system, a "cut here" edge that turns solid Signal Red while the name is showing. The stamp is the only element that breaks the grid: rotated -4° and bordered 3px in Signal Red.
+Hard-cornered and technical. Every rectangle (panels, buttons, inputs, tags, notes, the redaction bar) uses 2px corners. Edges are 1px: hairline navy on panels, dimmed cyan on inputs, red or steel on outlined buttons. Bracketed panels carry four L-shaped cyan corner marks (16px arms, 2px thick) laid just over the hairline. The circle is reserved for reticles: the masthead crosshair (2px ring, inner 1px ring, center dot, gapped cross-hairs) and the lock reticle in the target box. The redaction bar is hatched: 2px cyan bands at 34% and 12% opacity under a 1px cyan inner edge, exactly one name-line tall.
+
+### Named Rules
+**The Bracket Rule.** A panel is marked by its corners, not by a heavier border or a fill change. Brackets are always cyan, 16px by 2px.
 
 ## Components
 
-Typed and orderly: every component reads like part of a form that's been filled in, labelled and filed.
-
 ### Buttons
-- **Shape:** 4px corners, at least 48px tall, padding 12px × 16px, bold 16px Archivo.
-- **Primary:** a Signal Red fill with On Signal text. Use exactly one per sheet: Join, Start game, or Leave (confirm).
-- **Secondary:** transparent with a 1px Night Ink outline and Night Ink text: Create a new room, Copy invite link, Cancel.
-- **Link:** an underlined 14px Pencil Gray text button, used only for Leave room and Leave this game. It is still 48px tall.
-- **Focus:** a 3px Signal Red outline with a 2px offset (4px on headings that receive focus programmatically).
-- **Disabled:** 45% opacity and a not-allowed cursor.
-- **Busy:** the label names the operation ("Creating room…", "Joining…", "Sending targets…").
+Decisive, flat and capitalized; color carries the whole hierarchy.
+- **Shape:** sharp 2px corners, 48px minimum height, 12px by 16px padding.
+- **Primary:** Signal Cyan fill, navy text, primary lift. One per screen (Join room, Start game).
+- **Hover / Focus:** primary hover goes to Signal Cyan Hi; default hover fills Raised Navy and brightens the edge to ink; every button shows a 2px cyan outline at 3px offset on keyboard focus. Color transitions run 150ms.
+- **Alt (secondary):** transparent with a Hot Red edge and red label (Create a new room); hover adds a 10% red tint.
+- **Default:** transparent with a Muted Steel edge and ink label (Copy invite link, Cancel).
+- **Danger:** Hot Red fill with navy text, only for the confirmed Leave.
+- **Disabled:** 40% opacity, steel edge, no fill, no lift.
+- **Link button:** Inter 14px, muted, underlined, no box; used only for Leave room / Leave this game.
 
-### Case File (sheet)
-- **Corner Style:** 4px.
-- **Background:** Blank Sheet.
-- **Border:** 2px Night Ink.
-- **Internal Padding:** `clamp(16px, 6vw, 24px)`, so it narrows at high zoom.
-- **Content:** opens with a stamp, then its content grouped on the 4px scale.
+### Chips
+- **Host tag:** transparent, 1px Hot Red edge, red Rajdhani 12px caps, 2px corners. It is the only tag.
+
+### Cards / Containers
+- **Corner Style:** 2px.
+- **Background:** Panel Navy.
+- **Shadow Strategy:** none (see Elevation & Depth).
+- **Border:** 1px Hairline plus cyan corner brackets.
+- **Internal Padding:** clamp(16px, 6vw, 24px), with 16px between children.
+- **Notes:** status notes (test mode, offline) are a lighter container: 1px red edge at 45%, 8% red tint, ink text, 8px by 12px padding.
 
 ### Inputs / Fields
-- **Style:** a Cool Paper fill, a 1px Field Edge border, 4px corners, 17px text, a Signal Red caret, and Pencil Gray placeholders.
-- **Label:** a mono label above the field, always visible; the placeholder is only an example ("e.g. Indra").
-- **Room code variant:** mono, uppercase, 22px, with 0.3em letter spacing.
-- **Focus:** a 3px Signal Red outline.
-- **Error:** `aria-invalid`, plus a Signal Red error line below the field that is announced to screen readers.
+- **Style:** Night Navy fill, 1px Field Edge border, 2px corners, 48px minimum, Inter 17px, cyan caret, muted placeholder. The room code field switches to Code Input type.
+- **Hover:** border moves to Field Edge Hover.
+- **Focus:** border turns Signal Cyan with a 2px cyan outline at 2px offset.
+- **Error:** the field gets aria-invalid and points at a red Inter 14px error line below the form.
 
-### Stamp (signature)
-- Archivo Black capitals in Signal Red, `clamp(11px, 3.9vw, 15px)`, inside a 3px Signal Red border, rotated -4°.
-- One per sheet, naming its state: Recruiting (Home), Standby (Lobby), Confidential (Target).
-- Hidden from screen readers.
-- On the first reveal of a game, the Confidential stamp lands with a 0.35s scale-in ("thunk"). This only happens when the reduced-motion setting is off.
+### Navigation
+There is no navigation bar. The masthead (reticle, title, tagline) is the only persistent chrome; it shrinks to a reticle sigil and short title inside a room. Screen changes move focus to the new screen's heading, which shows a cyan focus outline.
 
-### Redacted Reveal (signature)
-- **Hidden:** a dashed box on Cool Paper holding a solid Night Ink redaction bar of fixed width, so it never hints at the name's length, plus a hint line.
-- **Showing:** holding shows the name in Title type; releasing hides it. A quick tap shows it for 5 seconds, and tapping again hides it. It also hides after 5 seconds, on app switch and on screen lock.
-- **States:** the border turns solid Signal Red while the name shows, and `aria-pressed` reflects the state.
+### Lists
+Player rosters are rule-separated rows: 1px Hairline above the list and under each row, 12px vertical padding, the name filling the row and tags at the end. Received names dim to muted; the waiting group's heading turns red. Definition lists (Agents, Status, Agent, Room) pair muted 12px caps terms with 14px Inter values in a two-column grid.
 
-### Dossier Metadata
-A two-column grid of uppercase mono labels (Pencil Gray) and plain values: Agent, Room, Rule, Saved on the target sheet; Agents and Status in the Lobby. This is how the system shows facts. Use it instead of chips or stat tiles.
+### Target Reveal (signature)
+The one place the system performs.
+- **At rest:** a Night Navy box, 1px Hairline, 2px corners, at least 184px tall, with cyan corner brackets inset 10px and the hatched redaction bar where the name will be, above a muted Inter hint.
+- **Lock-on:** while held (or for 5 seconds after a tap) the brackets close in to frame the name line (220ms, cubic-bezier(.16,1,.3,1)); a 132px reticle (1px cyan at 55%) scales from 1.7 to 1 and fades in (260ms); the name decrypts left to right out of random glyphs over about 350ms; a 3px Signal Cyan drain bar along the bottom edge empties over exactly 5 seconds.
+- **Above it:** when shown to the host, a full-width toggle row (Panel Navy, 1px red edge, 56px tall) with "Your target" and a red Open/Close state.
+- **Reduced motion:** the name swaps in instantly; no scramble, no bracket or reticle snap, no drain animation. All transitions are disabled.
 
-### Sealed Row (host)
-- A full-width 56px bar with a 2px Night Ink frame, reading "Your target" in Archivo capitals on the left and a mono Signal Red "Open / Close" on the right.
-- It expands to show the host's dossier, and collapses after 30 seconds, on app switch, or on blur.
-
-### Roster and Tags
-- Rows are separated by Rule Line, at least 12px apart, with names wrapping anywhere.
-- The host roster is grouped under mono headings "Waiting · N" then "Received · N"; received names are in Pencil Gray.
-- **Tags:** mono 11px uppercase with a 1px border and 3px corners. "Host" is the only tag, shown in Signal Red. They are not interactive and are never used for status.
-
-### Notes
-Blush Note background, 14px text, 4px corners, padding 8px × 12px. They are only for system conditions (test mode, lost connection) and are never used for an ordinary wait.
+### Reticle Masthead (signature)
+A cyan crosshair: 2px ring, a 1px inner ring at 34%, a 3px center dot and cross-hairs that extend 14px past the ring with a gap in the middle. clamp(120px, 46vw, 180px) with glow on Home; 40px, no glow, beside the title in a room; the size change eases over 300ms.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** open every screen's sheet with a stamp that names its state, in Signal Red capitals rotated -4°.
-- **Do** set every label, margin title and group heading in uppercase JetBrains Mono at 12px with 0.1em letter spacing.
-- **Do** keep every control at least 48px tall, and put irreversible actions behind the 48px leave zone with an inline confirm that puts Cancel first.
-- **Do** show facts as dossier metadata (mono label beside a value) rather than as chips, tiles or badges.
-- **Do** scale display sizes, the stamp and sheet padding with `clamp()` so the column holds at 200% zoom without sideways scrolling.
-- **Do** keep the system flat at rest; if a state needs lift, use an offset, soft-blur shadow for that state only.
+- **Do** keep cyan for go, codes and focus, and red for host, waiting and danger (The Two Signals Rule).
+- **Do** set titles, buttons, codes, counts and tags in Rajdhani 700 capitals with positive tracking, and every sentence in Inter.
+- **Do** give every control at least 48px of height and a 2px cyan focus outline.
+- **Do** mark panels with 16px cyan corner brackets over a 1px hairline on Panel Navy.
+- **Do** keep 2px corners on every rectangle and save circles for reticles.
+- **Do** keep the hatched cyan redaction bar exactly one name-line tall so revealing never shifts the layout.
+- **Do** honor prefers-reduced-motion with an instant swap and no scramble, snap or drain.
 
 ### Don't:
-- **Don't** show a target name unprompted. Redaction is the default state; a name appears only on an explicit hold or tap and seals itself again.
-- **Don't** introduce a second accent hue. Signal Red carries all emphasis, and status is said in words.
-- **Don't** use Archivo Black for running text, or mono for body copy.
-- **Don't** add decorative shadows, glows, gradients or rounded pill shapes.
-- **Don't** outline a control in Rule Line; controls use Field Edge or Night Ink.
+- **Don't** add glow beyond the reticle, the Home title, the room code and the primary button lift (The Rationed Light Rule).
+- **Don't** drift toward a hacker terminal: no code rain, fake command lines or monospace prompts.
+- **Don't** return to the paper dossier: no cream paper, rubber stamps or typewriter labels.
+- **Don't** add a light theme or a fourth surface tone.
+- **Don't** put a small tracked caps line above a heading as decoration; a panel gets a Panel Title only when it has no other heading.
+- **Don't** round corners past 2px or soften panels with drop shadows.
+- **Don't** let decoration slow joining: the name field, the code field and Join stay in the first viewport.
